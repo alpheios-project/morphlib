@@ -1,0 +1,2 @@
+# morphlib
+Morphological Lookup Library
