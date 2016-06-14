@@ -38,6 +38,7 @@
 
 # Design Requirements
 
+1. The core JS library should offer all functionality the same way controller and models work in MVC based development. They should be as decoupled as possible from the view (UI Plugin) so that its reusability is expanded. (see [discussion](https://github.com/alpheios-project/morphlib/issues/1))
 1. The following behavior should be modularized so that support for additional languages can be easily added to the
 library without requiring changes to code for other languages:
     1. tokenization algorithms
