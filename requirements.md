@@ -97,3 +97,9 @@ showPopup
     1. http://rollupjs.org/guide/
     1. https://medium.com/@trek/last-week-i-had-a-small-meltdown-on-twitter-about-npms-future-plans-around-front-end-packaging-b424dd8d367a#.d87x64w9z
 1. Chrome and Firefox extension developer's guides
+
+# Other resources
+
+1. Initial port of Alpheios to Require.js/Bookmarklet design: https://github.com/alpheios-project/alpheios5
+2. CapiTaiNs Sparrow codebase https://github.com/Capitains/Sparrow
+3. Arethusa BSP Morph Retriever https://github.com/alpheios-project/arethusa/wiki/Morphology-Handling and https://github.com/alpheios-project/arethusa/wiki/Adding-a-new-Morphology-Service-to-Arethusa
