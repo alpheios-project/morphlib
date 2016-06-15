@@ -44,7 +44,7 @@ library without requiring changes to code for other languages:
     1. tokenization algorithms
     1. normalization algorithms
     1. disamibugation algorithms (which could be via service call)
-1. The following behavior must be configurable by the user of the library on a per-language basis:
+1. The following behavior must be configurable __on a per-language basis__ by applications which use the library:
     1. event trigger (mouse/touch vs click)
     1. context to include (i.e. number of tokens before and after the selected token) in service requests)
     1. morphological service provider
@@ -54,7 +54,7 @@ library without requiring changes to code for other languages:
     1. disambugation provider
         1. should allow for definition of type (local or remote), url (if remote), API format, and version
     1. credit/copyright language for all data sources
-1. The following behavior must be configurable by the user of the library at the general usage level:
+1. The following behavior must be configurable for the library as a whole by applications which use the library:
     1. default language for source text
     1. a list of element `@id` and `@class` values regions of the page to be ignored by the library (i.e for
     which mouseover/popup behavior is deactivated)
