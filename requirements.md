@@ -63,6 +63,8 @@ library without requiring changes to code for other languages:
     1. ability to activate/deactivate console debugging
 1. Use [rollup.js](http://rollupjs.org/) to produce a single, deployable js with minimal dependencies
 1. Use a modular design, with ES6 Modules back-compiled by Babel for compatibility with current browsers
+1. Make the async function a public / replacable object of the core library (See   
+   [discussion](https://github.com/alpheios-project/morphlib/issues/2))
 1. Reuse of other 3rd party libraries (e..g jQuery) is generally okay, but strive for simplicity and minimal
 dependencies
 1. Use an i18n library for all UI text
