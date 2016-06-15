@@ -3,6 +3,7 @@
 1. activate mouseover/touch (as appropriate for media) behavior for text on any page
     1. must work on text in any valid HTML5 element (including SVG and Web Component)
     1. must work in main body as well as in an iframe
+    1. event handlers must be compatibile with both desktop and mobile devices
 1. identify the word token(s) selected, with surrounding context if applicable (per configuration)
     1. try to automatically detect language of the token(s) selected, but allow user to override if language detection fails
 1. submit the token(s) to a morphology provider + short definition provider
@@ -35,6 +36,7 @@
        1. activation/deactivation hook via a toolbar icon
        1. access to configuration options
        1. styling and display
+           1. browser extension ui must work on both desktop and mobile devices
 
 # Design Requirements
 
