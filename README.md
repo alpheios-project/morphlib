@@ -23,4 +23,13 @@ To validate their general purpose nature, we will use these libraries to provide
 
 By developing the libraries from the outset to support multiple projects, we also hope to help ensure their sustainability.  We will build them as a collaborative community of projects and developers working together to enhance and maintain the code.
 
+# Participants
+   * Bridget Almas (@balmas)
+   * Hugh Cayless (@hcayless)
+   * Thibault Clérice (@ponteineptique)
+   * Elijah Cooke ( @elijahjcooke )
+   * Harry Diakoff (@abrasax)
+   * Tom Elliott (@paregorios)
+   
+
 This project is receiving support from the [Andrew W. Mellon Foundation](http://www.mellon.org/) and the [Humboldt Chair of Digital Humanities at Leipzig](http://www.dh.uni-leipzig.de/wo/)
