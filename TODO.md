@@ -1,9 +1,9 @@
 #TODO
-##Modules to be created
-1. Tokenization module
-1. Morphology provider module
-1. disambiguation algorithms module
-1. short definitions module
+##Modules to be created? (probably wrong and will change)
+1. Tokenization module?
+1. Morphology provider module?
+1. disambiguation algorithms module?
+1. short definitions module?
 
 ##morphlib.response
 1. create dynamic creation of HTML fragment with a tree
