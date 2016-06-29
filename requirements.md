@@ -90,6 +90,7 @@ dependencies
 1. Document all configuration options
 1. Document code (why not what)
 1. Do frequent commits and pushes to github (no less than daily push, and small commits)
+    1. [Helpful guide to writing commit messages](http://chris.beams.io/posts/git-commit/)
 
 # Before beginning development please read:
 
