@@ -17,8 +17,8 @@ var morphlib = morphlib || {};
  *      m_disambugationProvider: string,
  *      m_copyrightInfo: string,
  *      m_debugging: boolean,
- *      m_ignoreElements: boolean,
- *      m_focusElements: boolean
+ *      m_ignoreElements: list,
+ *      m_focusElements: list
  *    }}
  */
 morphlib.main = {
