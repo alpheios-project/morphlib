@@ -10,8 +10,17 @@
 var morphlib = morphlib || {};
 
 /**
- *
- * @type {{dicHeadWords: string, shortDfinitions: string, pofs: string, inflAtrib: string, source: string, copyright: string, misc: string, links: string, getHTML: morphlib.response.getHTML, getJSON: morphlib.response.getJSON}}
+ * Response object that has all the property required in a response and the functions to generate that response
+ * @type {{dicHeadWords: string,
+ *      shortDfinitions: string,
+ *      pofs: string,
+ *      inflAtrib: string,
+ *      source: string,
+ *      copyright: string,
+ *      misc: string,
+ *      links: string,
+ *      getHTML: morphlib.response.getHTML,
+ *      getJSON: morphlib.response.getJSON}}
  */
 morphlib.response = {
     //Dictionary headwords (lemmas)
