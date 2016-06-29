@@ -7,6 +7,20 @@
  */
 var morphlib = morphlib || {};
 
+/**
+ * Main controller function for the Alpheios morphology library
+ * @type {{
+ *      m_defaultLang: string,
+ *      m_response: string,
+ *      m_morphService: string,
+ *      m_shortDefService: string,
+ *      m_disambugationProvider: string,
+ *      m_copyrightInfo: string,
+ *      m_debugging: boolean,
+ *      m_ignoreElements: boolean,
+ *      m_focusElements: boolean
+ *    }}
+ */
 morphlib.main = {
     //Default Language the Alphieos Morphology library will use
     m_defaultLang: "",
