@@ -106,3 +106,5 @@ showPopup
 1. Initial port of Alpheios to Require.js/Bookmarklet design: https://github.com/alpheios-project/alpheios5
 2. CapiTaiNs Sparrow codebase https://github.com/Capitains/Sparrow
 3. Arethusa BSP Morph Retriever https://github.com/alpheios-project/arethusa/wiki/Morphology-Handling and https://github.com/alpheios-project/arethusa/wiki/Adding-a-new-Morphology-Service-to-Arethusa
+4. Alpheios Code Reviews
+    1. https://www.youtube.com/watch?v=5Fl8-1iwQD0
