@@ -1,11 +1,6 @@
 /**
  * Created by Elijah Cooke on 6/28/2016.
  */
-/**
- * Global namespace
- * @type {{}}
- */
-var morphlib = morphlib || {};
 
 /**
  * Main controller function for the Alpheios morphology library
@@ -21,7 +16,8 @@ var morphlib = morphlib || {};
  *      m_focusElements: list
  *    }}
  */
-morphlib.main = {
+import * as Popup from "morphlib.popup";
+main = {
     //Default Language the Alphieos Morphology library will use
     m_defaultLang: "",
     //Holds the morphlib.response object
@@ -40,4 +36,38 @@ morphlib.main = {
     m_ignoreElements:false,
     //a list of element @id and @class values the page to which to limit the activity of the library
     m_focusElements:false,
+
+    //Initialize function for the class. Adds the even listener for to run morphlib when a page is loaded
+    init: function()
+    {
+        window.addEventListener("load", this.onLoad, false);
+    },
+
+    /*
+    TODO add check for dependencies
+     */
+    onLoad: function () {
+        this.enable();
+    },
+
+    /*
+    enables the library to run on a browser window
+     */
+    enable: function () {
+        //TODO check is lang is set if not detect
+        lang = "lat";
+        trigger = "default"; //TODO add call the get from language tool so it can be langauge specfic
+        this.setPopupTrigger(lang, trigger);
+    },
+
+
+    setPopupTrigger: function (lang, trigger) {
+        window.addEventListener(trigger, this.createPopup());
+    },
+
+    //Handler for the popup trigger event
+    createPopup: function (event) {
+        selction = window.getSelection()
+        Popup.processText(event,selction);
+    }
 }
