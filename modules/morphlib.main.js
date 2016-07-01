@@ -17,7 +17,8 @@
  *    }}
  */
 import * as Popup from "morphlib.popup";
-main = {
+import * as Util from "morphlib.util"
+class main = {
     //Default Language the Alphieos Morphology library will use
     m_defaultLang: "",
     //Holds the morphlib.response object
@@ -54,13 +55,15 @@ main = {
     enables the library to run on a browser window
      */
     enable: function () {
+        lang = false;
         //TODO check is lang is set if not detect
-        lang = "lat";
         trigger = "default"; //TODO add call the get from language tool so it can be langauge specfic
         this.setPopupTrigger(lang, trigger);
     },
 
-
+    /*
+    create listener to trigger the creation of the popup with the trigger supplied by the user config
+     */
     setPopupTrigger: function (lang, trigger) {
         window.addEventListener(trigger, this.createPopup());
     },
@@ -69,5 +72,21 @@ main = {
     createPopup: function (event) {
         selction = window.getSelection()
         Popup.processText(event,selction);
+    },
+
+    //get the appropiate language tool
+    getLanguageTool: function (elm) {
+        var langTool;
+        var langKey;
+        if(elm){
+            langKey = util.getLanguageforElement(elm);
+        }
+        if(!langKey){
+            langKey = m_defaultLang;
+        }
+        if(langKey){
+            langTool = languages.getLanguageToolfromKey()
+        }
     }
 }
+export main;
