@@ -6,7 +6,7 @@ import * as main from "morphlib.main"
 export function processText(event, selection) {
     test = window.getSelection()
     if(selection.isCollapsed){
-        //TODO send debug message that no data was found
+        throw new Error("Process Text: No Data Found")
         return;
     }
     text = test.toString();
