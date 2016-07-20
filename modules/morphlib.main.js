@@ -32,8 +32,6 @@ class main {
         this.disambugationProvider = "";
         //Copyright information
         this.copyrightInfo = "";
-        //debugging setting
-        this.debugging = false;
         //a list of element @id and @class values regions of the page to be ignored by the library
         this.ignoreElements = false;
         //a list of element @id and @class values the page to which to limit the activity of the library
