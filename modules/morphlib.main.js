@@ -17,9 +17,10 @@
  *    }}
  */
 import * as Popup from "morphlib.popup";
+import {preferences} from "morphlib.preferences"
 import * as Util from "morphlib.util"
 class main {
-    constructor(){
+    constructor(preffile){
         //Default Language the Alphieos Morphology library will use
         this.defaultLang = "";
         //Holds the morphlib.response object
@@ -36,6 +37,8 @@ class main {
         this.ignoreElements = false;
         //a list of element @id and @class values the page to which to limit the activity of the library
         this.focusElements = false;
+        //setup preferences from saved preference file
+        this.prefs = preferences("preferences.json");
     }
 
 

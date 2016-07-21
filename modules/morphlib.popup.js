@@ -20,7 +20,7 @@ export function processText(event, selection) {
     //TODO add check for whitespace
     //TODO check if treebank exists
     results = "HTML RESULTS(placeholder)"//TODO return real result
-    c
+    popupwindow = createPopup()
 }
 function createPopup(){
     debug = true; //TODO get debug stetting from preference file
@@ -33,5 +33,8 @@ function createPopup(){
         alert("Morphology Library failed to create a popup")
         return
     }
-
+    if(debug){
+        console.log("Popup window created successfully")
+    }
+    return myWindow
 }

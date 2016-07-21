@@ -1,0 +1,12 @@
+{
+  "debug": true,
+  "languages":[
+    {"currentlang":"gre"},
+    {"defaultlang":"gre"},
+    {"installedlangs":[
+      {"lang":"greek", "code":"gre"},
+      {"lang":"latin", "code":"lat"}
+    ]}
+  ]
+
+}
