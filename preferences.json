@@ -4,8 +4,8 @@
     {"currentlang":"gre"},
     {"defaultlang":"gre"},
     {"installedlangs":[
-      {"lang":"greek", "code":"gre"},
-      {"lang":"latin", "code":"lat"}
+      {"lang":"greek", "code":"gre", "mouseaction":"onclick"},
+      {"lang":"latin", "code":"lat", "mouseaction":"onclick"}
     ]}
   ]
 

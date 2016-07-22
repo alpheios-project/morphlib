@@ -4,11 +4,16 @@
 import {async} from "morphlib.async";
 class preferences {
     constructor(prefFile) {
-        //TODO add read in from preference file
+        prefdata = async("GET", prefFile, {"type":"text"});
+        prefs = JSON.parse(prefdata);
     }
+
     setMouseAction (lang, newAction){
         if(mouseActions(lang)){
-
+            installedlangs = prefs.languages[2];
+            for(var lang in installedlangs){
+                
+            }
         }
     }
 
