@@ -11,8 +11,10 @@ class preferences {
     setMouseAction (lang, newAction){
         if(mouseActions(lang)){
             installedlangs = prefs.languages[2];
-            for(var lang in installedlangs){
-                
+            for(var intlang in installedlangs["installedlangs"]){
+                if(installedlangs["installedlangs"][intlang]["code"]==lang){
+                    installedlangs["installedlangs"][intlang]["mouseaction"] == newAction;
+                }
             }
         }
     }
