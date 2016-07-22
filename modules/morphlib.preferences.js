@@ -9,18 +9,21 @@ class preferences {
     }
 
     setMouseAction (lang, newAction){
-        if(mouseActions(lang)){
-            installedlangs = prefs.languages[2];
-            for(var intlang in installedlangs["installedlangs"]){
-                if(installedlangs["installedlangs"][intlang]["code"]==lang){
-                    installedlangs["installedlangs"][intlang]["mouseaction"] == newAction;
-                }
+        installedlangs = prefs.languages[2];
+        for(var intlang in installedlangs["installedlangs"]){
+            if(installedlangs["installedlangs"][intlang]["code"]==lang){
+                installedlangs["installedlangs"][intlang]["mouseaction"] == newAction;
             }
         }
     }
 
     getMouseAction (lang){
-        return mouseActions(lang);
+        installedlangs = prefs.languages[2];
+        for(var intlang in installedlangs["installedlangs"]){
+            if(installedlangs["installedlangs"][intlang]["code"]==lang){
+                return installedlangs["installedlangs"][intlang]["mouseaction"];
+            }
+        }
     }
 }
 export default preferences;
