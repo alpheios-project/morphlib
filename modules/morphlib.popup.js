@@ -3,8 +3,8 @@
  */
 
 import * as main from "morphlib.main"
-export function processText(event, selection) {
-    debug = true; //TODO get debug stetting from preference file
+export function processText(event, selection, prefs) {
+    debug = prefs.getdebugstatus();
     test = window.getSelection()
     if(selection.isCollapsed){
         if(debug){

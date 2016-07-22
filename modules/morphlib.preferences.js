@@ -25,5 +25,8 @@ class preferences {
             }
         }
     }
+    getdebugstatus(){
+        return prefs.debug
+    }
 }
 export default preferences;

@@ -75,7 +75,7 @@ class main {
     //Handler for the popup trigger event
     createPopup (event) {
         selction = window.getSelection()
-        Popup.processText(event,selction);
+        Popup.processText(event,selction, prefs);
     }
 
     //get the appropiate language tool
