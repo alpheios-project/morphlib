@@ -2,10 +2,10 @@
  * Created by Elijah Cooke on 7/12/2016.
  * test
  */
-import {async} from "morphlib.async";
+import {async} from "./morphlib.async";
 class preferences {
     constructor(prefFile) {
-        prefdata = async("GET", prefFile, {"type":"text"});
+        var prefdata = async("GET", prefFile, {"type":"text"});
         prefs = JSON.parse(prefdata);
     }
 
