@@ -16,11 +16,11 @@
  *      m_focusElements: list
  *    }}
  */
-import * as Popup from "morphlib.popup";
-import {preferences} from "morphlib.preferences"
-import * as Util from "morphlib.util"
-class main {
-    constructor(preffile){
+import * as Popup from "./morphlib.popup.js"
+import preferences from "./morphlib.preferences.js"
+import * as Util from "./morphlib.util.js"
+class morphlib {
+    constructor(base){
         //Default Language the Alphieos Morphology library will use
         this.defaultLang = "";
         //Holds the morphlib.response object
@@ -38,7 +38,7 @@ class main {
         //a list of element @id and @class values the page to which to limit the activity of the library
         this.focusElements = false;
         //setup preferences from saved preference file
-        this.prefs = preferences("preferences.json");
+        this.prefs = new preferences("preferences.json");
     }
 
 
@@ -93,4 +93,4 @@ class main {
         }
     }
 }
-export default main;
+export default morphlib;
