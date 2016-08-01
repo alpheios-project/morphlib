@@ -30,6 +30,39 @@ By developing the libraries from the outset to support multiple projects, we als
    * Elijah Cooke ( @elijahjcooke )
    * Harry Diakoff (@abrasax)
    * Tom Elliott (@paregorios)
-   
+
+# Usage
+
+## Prerequisites
+
+  * Install Node 5.0
+
+## Install Dependencies
+
+```
+npm install
+```
+
+## Build
+
+```
+npm run build
+```
+
+Puts a copy of bundle.js in build/js
+
+
+## Develop
+
+```
+npm run dev
+```
+
+runs a local web server on port 8888. Browse to the examples in the sample/ folder. Make changes to the code and they'll show up when you reload.
+
+
+
+  
+
 
 This project is receiving support from the [Andrew W. Mellon Foundation](http://www.mellon.org/) and the [Humboldt Chair of Digital Humanities at Leipzig](http://www.dh.uni-leipzig.de/wo/)

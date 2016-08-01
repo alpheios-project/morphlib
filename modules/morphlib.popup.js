@@ -2,7 +2,7 @@
  * Created by elijah on 6/30/16.
  */
 
-import * as main from "morphlib.main"
+import * as main from "./morphlib.main"
 export function processText(event, selection, prefs) {
     debug = prefs.getdebugstatus();
     test = window.getSelection()
