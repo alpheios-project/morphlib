@@ -11,7 +11,7 @@ export default {
     moduleName: 'morphlib',
     targets: [
       { 
-        dest: "build/js/bundle.js",
+        dest: "build/js/alpheios-morphlib.js",
         format: "iife"
       }
     ]
