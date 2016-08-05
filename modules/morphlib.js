@@ -17,7 +17,7 @@
  *    }}
  */
 import * as Popup from "./popup.js"
-import preferences from "./morphlib.preferences.js"
+import preferences from "./preferences.js"
 import * as Util from "./util.js"
 class morphlib {
     constructor(base){
