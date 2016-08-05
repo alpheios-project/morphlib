@@ -3,15 +3,10 @@
  * test
  */
 import {async} from "./async.js";
-//import jquery from 'jquery'
+import {createjsonobj} from "./util.js"
 class preferences {
     constructor(prefFile) {
-        var prefsJSON;
-        jquery.getJSON(prefFile).then(function(data) {
-            prefsJSON = data;
-            console.log(prefsJSON);
-            this.prefsobj = prefsJSON;
-        })
+        this.prefsobj = createjsonobj(prefFile);
     }
 
     setMouseAction (lang, newAction){

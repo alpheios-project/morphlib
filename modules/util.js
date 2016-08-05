@@ -10,3 +10,11 @@ export function getLanguageforElement( ele) {
     //TODO check if element or parent elements contains xml:lang attribute 
     return lang_key;
 }
+export function createjsonobj (prefFile){
+    var prefsJSON;
+    jquery.getJSON(prefFile).then(function(data) {
+        prefsJSON = data;
+        console.log(prefsJSON);
+    })
+    return prefsJSON;
+}
