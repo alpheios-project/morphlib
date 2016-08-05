@@ -16,9 +16,9 @@
  *      m_focusElements: list
  *    }}
  */
-import * as Popup from "./morphlib.popup.js"
+import * as Popup from "./popup.js"
 import preferences from "./morphlib.preferences.js"
-import * as Util from "./morphlib.util.js"
+import * as Util from "./util.js"
 class morphlib {
     constructor(base){
         //Default Language the Alphieos Morphology library will use

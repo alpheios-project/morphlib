@@ -2,7 +2,7 @@
  * Created by Elijah Cooke on 7/12/2016.
  * test
  */
-import {async} from "./morphlib.async";
+import {async} from "./async.js";
 class preferences {
     constructor(prefFile) {
         var prefdata = async("GET", prefFile, {"type":"text"});
