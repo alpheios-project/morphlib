@@ -49,7 +49,7 @@ npm install
 npm run build
 ```
 
-Puts a copy of bundle.js in build/js
+Puts a copy of alpheios-morphlib.js in build/js
 
 
 ## Develop

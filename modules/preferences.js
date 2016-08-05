@@ -3,14 +3,19 @@
  * test
  */
 import {async} from "./async.js";
+//import jquery from 'jquery'
 class preferences {
     constructor(prefFile) {
-        var prefdata = async("GET", prefFile, {"type":"text"});
-        prefs = JSON.parse(prefdata);
+        var prefsJSON;
+        jquery.getJSON(prefFile).then(function(data) {
+            prefsJSON = data;
+            console.log(prefsJSON);
+            this.prefsobj = prefsJSON;
+        })
     }
 
     setMouseAction (lang, newAction){
-        installedlangs = prefs.languages[2];
+        installedlangs = prefsobj.languages[2];
         for(var intlang in installedlangs["installedlangs"]){
             if(installedlangs["installedlangs"][intlang]["code"]==lang){
                 installedlangs["installedlangs"][intlang]["mouseaction"] == newAction;
@@ -19,7 +24,7 @@ class preferences {
     }
 
     getMouseAction (lang){
-        installedlangs = prefs.languages[2];
+        installedlangs = prefsobj.languages[2];
         for(var intlang in installedlangs["installedlangs"]){
             if(installedlangs["installedlangs"][intlang]["code"]==lang){
                 return installedlangs["installedlangs"][intlang]["mouseaction"];
@@ -27,7 +32,7 @@ class preferences {
         }
     }
     getdebugstatus(){
-        return prefs.debug
+        return prefsobj.debug
     }
 }
 export default preferences;

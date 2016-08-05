@@ -15,7 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'bundle.js',
+      'build/js/alpheios-morphlib.js.js',
       'test/*.js'
     ],
 

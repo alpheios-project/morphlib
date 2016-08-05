@@ -6,7 +6,7 @@ import babel from 'rollup-plugin-babel';
 export default {
     entry: 'modules/morphlib.js',
     plugins: [ 
-      babel({exclude: 'node_modules/**'}) 
+      babel({})
     ],
     moduleName: 'morphlib',
     targets: [
