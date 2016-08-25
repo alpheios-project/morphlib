@@ -8,7 +8,7 @@ export default {
     plugins: [ 
       babel({})
     ],
-    moduleName: 'morphlib',
+    moduleName: 'morphlibrary',
     targets: [
       { 
         dest: "build/js/alpheios-morphlib.js",

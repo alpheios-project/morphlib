@@ -6,7 +6,18 @@ import {async} from "./async.js";
 import {createjsonobj} from "./util.js"
 class preferences {
     constructor(prefFile) {
-        this.prefsobj = createjsonobj(prefFile);
+        this.prefsobj = {
+            "debug": true,
+            "languages":[
+                {"currentlang":"gre"},
+                {"defaultlang":"gre"},
+                {"installedlangs":[
+                    {"lang":"greek", "code":"gre", "mouseaction":"onclick"},
+                    {"lang":"latin", "code":"lat", "mouseaction":"onclick"}
+                ]}
+            ]
+
+        }
     }
 
     setMouseAction (lang, newAction){

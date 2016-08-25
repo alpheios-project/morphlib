@@ -20,7 +20,7 @@ import * as Popup from "./popup.js";
 import preferences from "./preferences.js";
 import * as Util from "./util.js";
 class morphlib {
-    constructor(base){
+    constructor(){
         //Default Language the Alphieos Morphology library will use
         this.defaultLang = "";
         //Holds the morphlib.response object
@@ -42,19 +42,18 @@ class morphlib {
     }
 
 
-    //Initialize function for the class. Adds the even listener for to run morphlib when a page is loaded
+    /*Initialize function for the class. Adds the even listener for to run morphlib when a page is loaded
     init()
     {
         window.addEventListener("load", this.onLoad, false);
     }
-
+    */
     /*
-    TODO add check for dependencies
-     */
+
     onload () {
         this.enable();
     }
-
+    */
     /*
     enables the library to run on a browser window
      */
