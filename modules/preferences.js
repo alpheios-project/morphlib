@@ -7,7 +7,7 @@ import {createjsonobj} from "./util.js"
 class preferences {
     constructor(prefFile) {
         this.prefsobj = {
-            "debug": true,
+            "debug": [true],
             "languages":[
                 {"currentlang":"gre"},
                 {"defaultlang":"gre"},
@@ -38,7 +38,9 @@ class preferences {
         }
     }
     getdebugstatus(){
-        return prefsobj.debug
+        //placeholder till preference class is fixed
+        return true;
+        //return prefsobj.debug
     }
 }
 export default preferences;

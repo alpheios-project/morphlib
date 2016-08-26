@@ -58,23 +58,31 @@ class morphlib {
     enables the library to run on a browser window
      */
     enable () {
-        lang = false;
+        console.log("enabling of morphology library started")
+        var lang = false;
         //TODO check is lang is set if not detect
-        trigger = "default"; //TODO add call the get from language tool so it can be langauge specfic
-        this.setPopupTrigger(lang, trigger);
+        var trigger = "select"; //TODO add call the get from language tool so it can be langauge specfic
+        this.setPopupTrigger(trigger);
+        console.log("morphology library enabled")
     }
 
     /*
     create listener to trigger the creation of the popup with the trigger supplied by the user config
      */
-    setPopupTrigger (lang, trigger) {
-        window.addEventListener(trigger, this.createPopup());
+    setPopupTrigger (trigger) {
+        console.log("adding event listener to document")
+        document.getElementById("test").select = this.createPopup;
+        //document.body.addEventListener(trigger, this.createPopup);
+        console.log("event listener added to document")
     }
 
     //Handler for the popup trigger event
     createPopup (event) {
-        selction = window.getSelection()
-        Popup.processText(event,selction, prefs);
+        var selection;
+        selection = document.getSelection()
+        console.log("selection sent to processText method")
+        Popup.processText(event,selection, this.prefs);
+
     }
 
     //get the appropiate language tool

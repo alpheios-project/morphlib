@@ -4,8 +4,8 @@
 
 import * as main from "./morphlib"
 export function processText(event, selection, prefs) {
-    debug = prefs.getdebugstatus();
-    test = window.getSelection()
+    var debug = prefs.getdebugstatus();
+    var test = window.getSelection()
     if(selection.isCollapsed){
         if(debug){
             console.log("Process Text: No Data Found")
@@ -20,10 +20,10 @@ export function processText(event, selection, prefs) {
     //TODO add check for whitespace
     //TODO check if treebank exists
     results = "HTML RESULTS(placeholder)"//TODO return real result
-    popupwindow = createPopup()
+    popupwindow = launchPopup()
 }
-function createPopup(){
-    debug = true; //TODO get debug stetting from preference file
+function launchPopup(){
+    var debug = true; //TODO get debug stetting from preference file
     //TODO take window name from preference file
     var myWindow = window.open("", "morplibWindow", "width=600,height=400");
     if(!myWindow){
