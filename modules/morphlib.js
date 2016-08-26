@@ -73,7 +73,7 @@ class morphlib {
      */
     setPopupTrigger (trigger) {
         console.log("adding event listener to document")
-        this.doc.getElementById("test").addEventListener(trigger, this.createPopup);
+        this.doc.addEventListener(trigger, this.createPopup);
         console.log("event listener added to document")
     }
 
