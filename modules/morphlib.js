@@ -20,7 +20,7 @@ import * as Popup from "./popup.js";
 import preferences from "./preferences.js";
 import * as Util from "./util.js";
 class morphlib {
-    constructor(){
+    constructor(documentobj){
         //Default Language the Alphieos Morphology library will use
         this.defaultLang = "";
         //Holds the morphlib.response object
@@ -39,6 +39,8 @@ class morphlib {
         this.focusElements = false;
         //setup preferences from saved preference file
         this.prefs = new preferences("preferences.json");
+        //document object
+        this.doc = documentobj;
     }
 
 
@@ -71,7 +73,7 @@ class morphlib {
      */
     setPopupTrigger (trigger) {
         console.log("adding event listener to document")
-        window.document.getElementById("test").addEventListener(trigger, this.createPopup);
+        this.doc.getElementById("test").addEventListener(trigger, this.createPopup);
         console.log("event listener added to document")
     }
 
