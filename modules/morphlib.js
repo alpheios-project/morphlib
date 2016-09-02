@@ -18,11 +18,14 @@
  */
 import * as Popup from "./popup.js";
 import preferences from "./preferences.js";
+import eventhandler from "./Eventhandler.js";
 import * as Util from "./util.js";
+import jQuery from 'jquery';
+var $ = jQuery;
 class morphlib {
     constructor(documentobj){
         //Default Language the Alphieos Morphology library will use
-        this.defaultLang = "";
+        this.defaultlang = "";
         //Holds the morphlib.response object
         this.response = "";
         //holds the location of the morphology provider
@@ -42,48 +45,69 @@ class morphlib {
         //document object
         this.doc = documentobj;
     }
-
-
-    /*Initialize function for the class. Adds the even listener for to run morphlib when a page is loaded
-    init()
-    {
-        window.addEventListener("load", this.onLoad, false);
-    }
-    */
     /*
-
-    onload () {
-        this.enable();
-    }
-    */
-    /*
-    enables the library to run on a browser window
+     activate the library to run on a browser window
      */
-    enable () {
-        console.log("enabling of morphology library started")
-        var lang = false;
-        //TODO check is lang is set if not detect
-        var trigger = "select"; //TODO add call the get from language tool so it can be langauge specfic
-        this.setPopupTrigger(trigger);
-        console.log("morphology library enabled")
+    activate (deflang, events) {
+        var instance = this;
+        if(this.prefs.getdebugstatus()){
+            console.log("activate morphology library started");
+        }
+        this.defaultlang = deflang;
+        if(this.prefs.getdebugstatus()){
+            console.log("Adding default listener");
+        }
+        if(events){
+            if(this.prefs.getdebugstatus()){
+                console.log("Adding events");
+            }
+            for(var x in events){
+                if(this.prefs.getdebugstatus()){
+                    console.log("Adding " + x + "event");
+                }
+                $('body').bind(x, function () {
+                    eventhandler(event, this, x);
+                });
+                if(this.prefs.getdebugstatus()){
+                    console.log(x + "event added");
+                }
+            }
+        }
+        else {
+            if(this.prefs.getdebugstatus()){
+                console.log("Adding default events (Click and Touch)");
+                var bodydebug = $('body');
+                console.log(bodydebug);
+            }
+            $('body').on('dblclick', '*', function () {
+                eventhandler(event, instance, "click");
+            })
+            $('body').on('touch', '*', function () {
+                eventhandler(event, instance, "touch");
+            })
+            if(this.prefs.getdebugstatus()){
+                console.log("Default events added");
+            }
+        }
+
+        if(this.prefs.getdebugstatus()){
+            console.log("morphology library activated")
+        }
     }
 
-    /*
-    create listener to trigger the creation of the popup with the trigger supplied by the user config
-     */
-    setPopupTrigger (trigger) {
-        console.log("adding event listener to document")
-        this.doc.getElementById("test").addEventListener(trigger, this.createPopup);
-        console.log("event listener added to document")
+    deactivate (){
+        if(this.prefs.getdebugstatus()){
+            console.log("Deactivating Morphology library")
+        }
+        $('body').unbind;
+        alert("Morphology Library Deactivated")
+        if(this.prefs.getdebugstatus()){
+            console.log("Morphology library deactivated")
+        }
     }
 
-    //Handler for the popup trigger event
-    createPopup (event) {
-        var selection;
-        selection = document.getSelection()
-        console.log("selection sent to processText method")
-        Popup.processText(event,selection, this.prefs);
-
+    currentLanguage (){
+        return this.defaultLang;
     }
 
     //get the appropiate language tool

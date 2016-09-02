@@ -3,25 +3,6 @@
  */
 
 import * as main from "./morphlib"
-export function processText(event, selection, prefs) {
-    var debug = prefs.getdebugstatus();
-    var test = window.getSelection()
-    if(selection.isCollapsed){
-        if(debug){
-            console.log("Process Text: No Data Found")
-        }
-        return;
-    }
-    text = test.toString();
-    //TODO check to see if site has set word to be ignored
-    //TODO add disable for areas of the page to be ignored
-    //TODO add rule for mixed site
-    parentNode = test.anchorNode.parentNode.textContent
-    //TODO add check for whitespace
-    //TODO check if treebank exists
-    results = "HTML RESULTS(placeholder)"//TODO return real result
-    popupwindow = launchPopup()
-}
 function launchPopup(){
     var debug = true; //TODO get debug stetting from preference file
     //TODO take window name from preference file

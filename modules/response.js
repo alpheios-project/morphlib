@@ -7,66 +7,21 @@
  * Global namespace
  * @type {{}}
  */
-var morphlib = morphlib || {};
 
-/**
- * Response object that has all the property required in a response and the functions to generate that response
- * @type {{dicHeadWords: string,
- *      shortDfinitions: string,
- *      pofs: string,
- *      inflAtrib: string,
- *      source: string,
- *      copyright: string,
- *      misc: string,
- *      links: string,
- *      getHTML: morphlib.response.getHTML,
- *      getJSON: morphlib.response.getJSON}}
- */
-morphlib.response = {
-    //Dictionary headwords (lemmas)
-    dicHeadWords: "",
-    //Short definitions
-    shortDfinitions: "",
-    //parts of speech
-    pofs: "",
-    //inflection attributes (per alpheios lexicon schema)
-    inflAtrib: "",
-    //source information
-    source: "",
-    //copyright information
-    copyright: "",
-    // notes and extra data
-    misc: "",
-    //related links
-    links: "",
-
-    //methods for response object
-    /**
-     * Function for generating a HTML fragment representation of response object
-     * @returns {HTML fragment}
-     */
-    getHTML: function () {
-        htmlFrag =
-            '<div class="morphlib-response"><div class="morphlib-dicHeadWords">'+dicHeadWords+'</div></div>';
-        return htmlFrag;
-    },
-    /**
-     * Function for generating a JSON object representation of response object
-     * @returns {JSON object}
-     */
-    getJSON: function () {
-        jsonObj = {"response":[
-            {
-                "dicHeadwords":dicHeadWords,
-                "shortDfinitions":shortDfinitions,
-                "pofs":pofs,
-                "inflAtrib":inflAtrib,
-                "source":source,
-                "copyright":copyright,
-                "misc":misc,
-                "links":links
-            }
-        ]}
-        return jsonObj;
+class response {
+    //constructor for response object
+    constructor(word, bcontext, fcontext, wordlang, textdir) {
+        //Selected Token from triggered event
+        this.selectedtoken= word;
+        //Backwards context for selected token
+        this.backwardcontext= bcontext;
+        //forward context for selected token
+        this.forwardcontext= fcontext;
+        //language for selected token
+        this.lang= wordlang;
+        //text direction for selected token
+        this.textdirection= textdir;
     }
 }
+
+export default response

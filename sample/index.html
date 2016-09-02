@@ -2,35 +2,12 @@
   <head>Test Morphlib</head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script type="text/javascript" src="../build/js/alpheios-morphlib.js"></script>
-    <!--<script>
-      var instance
-      function createmorphlib(callback) {
-        var testmorphlib = new morphlib();
-        instance = testmorphlib
-        callback();
-      }
-      function changemouseaction(callback) {
-        alert(instance.prefs)
-        instance.prefs.setMouseAction("gre","doubleclick");
-        callback();
-      }
-      function getmouseaction() {
-        alert(instance.prefs.getMouseAction("gre"));
-      }
-
-      createmorphlib(function () {
-        changemouseaction(function () {
-          getmouseaction();
-        })
-      })
-
-    </script>-->
   </head>
   <body>
-  <p id="test">Test me</p>
+  <p id="test" xml:lang="lat">Test me</p>
   <script>
     var lib = new morphlibrary(document);
-    lib.enable()
+    lib.activate("gre");
   </script>
   </body>
 </html>
