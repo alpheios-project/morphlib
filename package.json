@@ -19,8 +19,9 @@
     "karma-jasmine": "^1.0.2"
   },
   "scripts": {
+    "test": "start karma.conf.js",
     "build": "rollup -c rollup.config.js",
-    "dev": "npm run build && http-server -p 8888 & onchange modules -- npm run build",
-    "test": "start karma.conf.js"
+    "dev": "npm run build && http-server -p 8888 & onchange modules -- npm run build"
+
   }
 }
