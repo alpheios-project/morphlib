@@ -16,16 +16,17 @@
  *      m_focusElements: list
  *    }}
  */
-import * as Popup from "./popup.js";
 import preferences from "./preferences.js";
 import eventhandler from "./Eventhandler.js";
-import * as Util from "./util.js";
+import morphservice from "./morphservice.js";
 import jQuery from 'jquery';
 var $ = jQuery;
 class morphlib {
     constructor(documentobj){
         //Default Language the Alphieos Morphology library will use
         this.defaultlang = "";
+        //Current Language the morphology library is using
+        this.currentlang = "";
         //Holds the morphlib.response object
         this.response = "";
         //holds the location of the morphology provider
@@ -54,6 +55,7 @@ class morphlib {
             console.log("activate morphology library started");
         }
         this.defaultlang = deflang;
+        this.currentlang = deflang;
         if(this.prefs.getdebugstatus()){
             console.log("Adding default listener");
         }
@@ -80,7 +82,14 @@ class morphlib {
                 console.log(bodydebug);
             }
             $('body').on('dblclick', '*', function () {
-                eventhandler(event, instance, "click");
+                var tokenobject = eventhandler(event, instance, "click");
+                morphservice(
+                    tokenobject,
+                    instance.prefs.getmorphservicetype(instance.currentlang),
+                    instance.prefs.getmorphserviceuri(instance.currentlang),
+                    instance.prefs.getmorphserviceapiformat(instance.currentlang),
+                    instance.prefs.getmorphserviceversion(instance.currentlang),
+                    instance);
             })
             $('body').on('touch', '*', function () {
                 eventhandler(event, instance, "touch");
@@ -107,7 +116,7 @@ class morphlib {
     }
 
     currentLanguage (){
-        return this.defaultLang;
+        return this.currentlang;
     }
 
     //get the appropiate language tool

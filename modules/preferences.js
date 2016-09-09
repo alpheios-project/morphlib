@@ -2,8 +2,6 @@
  * Created by Elijah Cooke on 7/12/2016.
  * test
  */
-import {async} from "./async.js";
-import {createjsonobj} from "./util.js"
 class preferences {
     constructor(prefFile) {
         this.prefsobj = {
@@ -18,6 +16,10 @@ class preferences {
             ]
 
         }
+    }
+
+    getcurretlang(){
+
     }
 
     setMouseAction (lang, newAction){
@@ -42,5 +44,45 @@ class preferences {
         return true;
         //return prefsobj.debug
     }
+    getmorphservicetype(lang){
+        if(lang == "gre"){
+            return "remote";
+        }
+        if(lang == "lat"){
+            return "remote";
+        }
+    }
+    getmorphservicetype(lang){
+        if(lang == "gre"){
+            return "remote";
+        }
+        if(lang == "lat"){
+            return "remote";
+        }
+    }
+    getmorphserviceuri(lang){
+        if(lang == "gre"){
+            return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=grc&engine=morpheusgrc&word=";
+        }
+        if(lang == "lat"){
+            return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=lat&engine=morpheuslat&word=";
+        }
+    }
+    getmorphserviceapiformat(lang){
+        if(lang == "gre"){
+            return "alpheios";
+        }
+        if(lang == "lat"){
+            return "alpheios";
+        }
+    }
+    getmorphserviceversion(lang){
+    if(lang == "gre"){
+        return "placeholder";
+    }
+    if(lang == "lat"){
+        return "placeholder";
+    }
+}
 }
 export default preferences;

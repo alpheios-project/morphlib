@@ -2,7 +2,7 @@
  * Created by Elijah Cooke on 8/30/2016.
  */
 import * as main from "./morphlib"
-import response from "./response.js";
+import {tokenresponse} from "./response.js";
 export default function eventhandler(event, instance, trigger) {
     if(instance.prefs.getdebugstatus()){
         console.log("Event Triggered")
@@ -40,9 +40,10 @@ export default function eventhandler(event, instance, trigger) {
 }
 // process a word with the default values for latin
 function processwordlat(srcele, instance) {
+    instance.currentlang = "lat";
     var word = window.getSelection().toString();
     //TODO tokenize context and send to response constructor
-    var result = new response(word,'','','lat','ltr');
+    var result = new tokenresponse(word,'','','lat','ltr');
     if(instance.prefs.getdebugstatus()){
         console.log(result)
     }
@@ -50,9 +51,10 @@ function processwordlat(srcele, instance) {
 }
 // process a word with the default values for greek
 function processwordgre(srcele, instance) {
+    instance.currentlang = "gre";
     var word = window.getSelection().toString();
     //TODO tokenize context and send to response constructor
-    var result = new response(word,'','','gre','ltr');
+    var result = new tokenresponse(word,'','','gre','ltr');
     if(instance.prefs.getdebugstatus()){
         console.log(result)
     }
