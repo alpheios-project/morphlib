@@ -4,6 +4,7 @@
 import jQuery from 'jquery';
 import {morphresponse} from "./response.js";
 import {analysisresponse} from "./response.js";
+import launchpopup from "./popup.js";
 export default function morphservice (tokenobj, typeservice, serviceuri, apiformat, version, morplibinstance) {
     if(apiformat == "alpheios") {
         if(morplibinstance.prefs.getdebugstatus()){
@@ -18,7 +19,7 @@ export default function morphservice (tokenobj, typeservice, serviceuri, apiform
                 type: "GET",
                 dataType: "json",
                 success: function (result){
-                    alpheiosparser(result,morplibinstance, tokenobj)
+                    return alpheiosparser(result,morplibinstance, tokenobj)
                 }
             });
         }
@@ -70,5 +71,6 @@ function alpheiosparser (result, instance, tokenobj){
         }
     }
     var response = new morphresponse(tokenobj, analysisobjects, false);
+    launchpopup(response,instance);
     return response;
 }

@@ -83,7 +83,7 @@ class morphlib {
             }
             $('body').on('dblclick', '*', function () {
                 var tokenobject = eventhandler(event, instance, "click");
-                morphservice(
+                var morphresponse =morphservice(
                     tokenobject,
                     instance.prefs.getmorphservicetype(instance.currentlang),
                     instance.prefs.getmorphserviceuri(instance.currentlang),
