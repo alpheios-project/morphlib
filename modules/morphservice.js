@@ -36,8 +36,15 @@ function alpheiosparser (result, instance, tokenobj){
     }
     var analysisobjects = [];
     var analysis = result["RDF"]["Annotation"]["Body"];
-    if(instance.prefs.getdebugstatus()){
-        console.log("body element found in Json morphology json response");
+    if(analysis) {
+        if(instance.prefs.getdebugstatus()){
+            console.log("body element found in Json morphology json response");
+        }
+    } else {
+        analysis = result["RDF"]["Annotation"];
+        if(instance.prefs.getdebugstatus()){
+            console.log("No body element found");
+        }
     }
     for (var i = 0; i < analysis.length; i++){
         if(instance.prefs.getdebugstatus()){

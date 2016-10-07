@@ -22,7 +22,7 @@ import morphservice from "./morphservice.js";
 import jQuery from 'jquery';
 var $ = jQuery;
 class morphlib {
-    constructor(documentobj){
+    constructor(documentobj, shortdeflat, shortdefgre){
         //Default Language the Alphieos Morphology library will use
         this.defaultlang = "";
         //Current Language the morphology library is using
@@ -45,6 +45,13 @@ class morphlib {
         this.prefs = new preferences("preferences.json");
         //document object
         this.doc = documentobj;
+        //previous morphology results
+        this.morphresults = [];
+        //short definitions for greek
+        
+        this.shortdefgreek = shortdefgre;
+        //short definitions for latin
+        this.shortdeflatin = shortdeflat;
     }
     /*
      activate the library to run on a browser window
