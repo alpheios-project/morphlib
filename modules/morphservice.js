@@ -108,7 +108,7 @@ function alpheiosparser (result, instance, tokenobj){
                 if(instance.prefs.getdebugstatus()){
                     console.log("part of speech found");
                 }
-                var shortdef = analysis[i]["rest"]["entry"]["uri"];
+                var shortdef = instance.shortdefgreek[lemma];
                 if(instance.prefs.getdebugstatus()){
                     console.log("short definition uri found");
                 }
@@ -142,7 +142,7 @@ function alpheiosparser (result, instance, tokenobj){
             if(instance.prefs.getdebugstatus()){
                 console.log("part of speech found");
             }
-            var shortdef = analysis["rest"]["entry"]["uri"];
+            var shortdef = instance.shortdefgreek[lemma];
             if(instance.prefs.getdebugstatus()){
                 console.log("short definition uri found");
             }

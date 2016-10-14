@@ -23,6 +23,7 @@ import jQuery from 'jquery';
 var $ = jQuery;
 class morphlib {
     constructor(documentobj, shortdeflat, shortdefgre){
+        var xx = this;
         //Default Language the Alphieos Morphology library will use
         this.defaultlang = "";
         //Current Language the morphology library is using
@@ -48,8 +49,9 @@ class morphlib {
         //previous morphology results
         this.morphresults = [];
         //short definitions for greek
-        
-        this.shortdefgreek = shortdefgre;
+        jQuery.getJSON("http://192.168.56.1:8888/sample/grc-lsj-defs.json", function (data) {
+            xx.shortdefgreek = data;
+        })
         //short definitions for latin
         this.shortdeflatin = shortdeflat;
     }
