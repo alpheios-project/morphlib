@@ -19,7 +19,7 @@ class preferences {
     }
 
     getcurretlang(){
-
+        
     }
 
     setMouseAction (lang, newAction){

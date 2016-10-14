@@ -6,7 +6,9 @@ import * as main from "./morphlib"
 export default function launchPopup(morpgresponse, instance){
     var debug = instance.prefs.getdebugstatus();
     var myWindow = window.open("", "morplibWindow", "width=600,height=400");
-    myWindow.document.write('<head><link rel="stylesheet" href="morphwindow.css" type="text/css" /></head>');
+    myWindow.document.open();
+    myWindow.focus();
+    myWindow.document.write('<head><link rel="stylesheet" href="morphwindow.css" type="text/css" /> </head>');
     if(!myWindow){
         if(debug){
             console.log("Warning popup window failed to create popup window")
@@ -18,7 +20,6 @@ export default function launchPopup(morpgresponse, instance){
         console.log("Popup window created successfully")
     }
     var entries = morpgresponse.analysisobjects
-    instance.morphresults.push(jQuery("div[class*='morphlib-word']").detach());
     myWindow.document.write('<div context="'+morpgresponse.originalform+' class="morphlib-word morphlib-word-first">')
     for (var i = 0; i < entries.length; i++){
         myWindow.document.write('<div class="morphlib-entry">');
@@ -29,9 +30,11 @@ export default function launchPopup(morpgresponse, instance){
         myWindow.document.write('<div class="morphlib-mean">'+entries[i].shortdefinition);
         myWindow.document.write('</div>');
         myWindow.document.write('<div class="morphlib-label morphlib-form-label">Form(s):</div>');
-        myWindow.document.write('<div context="'+entries[i].lemma+'" class="morphlib-infl-set"><span class="morphlib-term">'+entries[i].lemma+'</span></div>');
+        for (var x = 0; x < entries[i].inflections.length; x++){
+            myWindow.document.write('<div context="'+entries[i].inflections[x]+'" class="morphlib-infl-set"><span class="morphlib-term">'+entries[i].inflections[x]+'</span></div>');
+        }
         myWindow.document.write('</div>');
     }
     myWindow.document.write("</div>")
-    return myWindow
+    myWindow.focus();
 }
