@@ -49,7 +49,7 @@ class morphlib {
         //previous morphology results
         this.morphresults = [];
         //short definitions for greek
-        jQuery.getJSON("http://192.168.56.1:8888/sample/grc-lsj-defs.json", function (data) {
+        jQuery.getJSON("grc-lsj-defs.json", function (data) {
             xx.shortdefgreek = data;
         })
         //short definitions for latin
