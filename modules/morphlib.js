@@ -53,7 +53,7 @@ class morphlib {
             xx.shortdefgreek = data;
         })
         //short definitions for latin
-        this.shortdeflatin = shortdeflat;
+        this.shortdeflatin = false;
     }
     /*
      activate the library to run on a browser window

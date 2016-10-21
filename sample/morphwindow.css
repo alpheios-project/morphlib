@@ -124,6 +124,13 @@
     padding-top: 0px;
 }
 
+.morphlib-tense,.morphlib-voice,.morphlib-pers {
+    color: #3E8D9C;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
 .morphlib-entry span:not(.morphlib-nopad) {
     padding-right: .5em;
 }

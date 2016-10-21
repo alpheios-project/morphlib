@@ -8,7 +8,7 @@ export default function launchPopup(morpgresponse, instance){
     var myWindow = window.open("", "morplibWindow", "width=600,height=400");
     myWindow.document.open();
     myWindow.focus();
-    myWindow.document.write('<head><link rel="stylesheet" href="morphwindow.css" type="text/css" /> </head>');
+    myWindow.document.write('<head><link rel="stylesheet" href="morphwindow.css" type="text/css" /><title>Morphology Library Window</title> </head>');
     if(!myWindow){
         if(debug){
             console.log("Warning popup window failed to create popup window")
@@ -31,7 +31,31 @@ export default function launchPopup(morpgresponse, instance){
         myWindow.document.write('</div>');
         myWindow.document.write('<div class="morphlib-label morphlib-form-label">Form(s):</div>');
         for (var x = 0; x < entries[i].inflections.length; x++){
-            myWindow.document.write('<div context="'+entries[i].inflections[x]+'" class="morphlib-infl-set"><span class="morphlib-term">'+entries[i].inflections[x]+'</span></div>');
+            var form = entries[i].inflections[x]["term"]["stem"];
+            if(entries[i].inflections[x]["term"]["suff"]){
+                form = form + "-" + entries[i].inflections[x]["term"]["suff"];
+            }
+            myWindow.document.write('<div class="morphlib-infl-set" context="'+form+'" class="morphlib-infl-set"><span class="morphlib-term">'+form+'</span>');
+            myWindow.document.write('<div class="morphlib-infl">')
+            if(entries[i].inflections[x]["pers"]){
+                myWindow.document.write('<span class="morphlib-pers">'+entries[i].inflections[x]["pers"]+' person</span>')
+            }
+            if(entries[i].inflections[x]["num"]){
+                myWindow.document.write('<span class="morphlib-num">'+entries[i].inflections[x]["num"]+'; </span>')
+            }
+            if(entries[i].inflections[x]["tense"]){
+                myWindow.document.write('<span class="morphlib-tense">'+entries[i].inflections[x]["tense"]+' </span>')
+            }
+            if(entries[i].inflections[x]["mood"]){
+                myWindow.document.write('<span class="morphlib-mood">'+entries[i].inflections[x]["mood"]+'; </span>')
+            }
+            if(entries[i].inflections[x]["voice"]){
+                myWindow.document.write('<span class="morphlib-voice">'+entries[i].inflections[x]["voice"]+'</span>')
+            }
+            if(entries[i].inflections[x]["case"]){
+                myWindow.document.write('<span class="morphlib-voice">'+entries[i].inflections[x]["case"]["$"]+'</span>')
+            }
+            myWindow.document.write('</div></div>')
         }
         myWindow.document.write('</div>');
     }

@@ -2,20 +2,11 @@
  * Created by Elijah Cooke on 7/12/2016.
  * test
  */
+import jQuery from 'jquery';
+
 class preferences {
     constructor(prefFile) {
-        this.prefsobj = {
-            "debug": [true],
-            "languages":[
-                {"currentlang":"gre"},
-                {"defaultlang":"gre"},
-                {"installedlangs":[
-                    {"lang":"greek", "code":"gre", "mouseaction":"onclick"},
-                    {"lang":"latin", "code":"lat", "mouseaction":"onclick"}
-                ]}
-            ]
 
-        }
     }
 
     getcurretlang(){
@@ -65,7 +56,7 @@ class preferences {
             return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=grc&engine=morpheusgrc&word=";
         }
         if(lang == "lat"){
-            return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=lat&engine=morpheuslat&word=";
+            return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=lat&engine=whitakerLat&word=";
         }
     }
     getmorphserviceapiformat(lang){
@@ -73,7 +64,7 @@ class preferences {
             return "alpheios";
         }
         if(lang == "lat"){
-            return "alpheios";
+            return "ww";
         }
     }
     getmorphserviceversion(lang){
