@@ -26,13 +26,15 @@ export class tokenresponse {
 
 export class morphresponse {
     //constructor for response of parsed morphology object that morphology parser returns
-    constructor(originform, objects, isordered){
+    constructor(originform, objects, isordered, credit){
         // the original analyzed form
         this.originalform = originform;
         // list of analysis objects
         this.analysisobjects = objects
         // boolean which tells whether the analysis objects are ordered or not
         this.ordered = isordered;
+        //credits
+        this.credits = credit
     }
 }
 

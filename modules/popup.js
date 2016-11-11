@@ -1,13 +1,17 @@
 /**
  * Created by elijah on 6/30/16.
  */
-import jQuery from 'jquery';
 import * as main from "./morphlib"
 export default function launchPopup(morpgresponse, instance){
     var debug = instance.prefs.getdebugstatus();
-    var myWindow = window.open("", "morplibWindow", "width=600,height=400");
-    myWindow.document.open();
-    myWindow.focus();
+    if(instance.popup){
+        instance.popup.close();
+        var myWindow = window.open("", "morplibWindow", "width=600,height=400");
+        myWindow.document.open();
+        myWindow.focus();
+    } else {
+        var myWindow = window.open("", "morplibWindow", "width=600,height=400");
+    }
     myWindow.document.write('<head><link rel="stylesheet" href="morphwindow.css" type="text/css" /><title>Morphology Library Window</title> </head>');
     if(!myWindow){
         if(debug){
@@ -60,5 +64,7 @@ export default function launchPopup(morpgresponse, instance){
         myWindow.document.write('</div>');
     }
     myWindow.document.write("</div>")
+    myWindow.document.write('<div>'+morpgresponse.credits+'</div>')
     myWindow.focus();
+    instance.popup = myWindow;
 }

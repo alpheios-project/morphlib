@@ -20,7 +20,6 @@ import preferences from "./preferences.js";
 import eventhandler from "./Eventhandler.js";
 import morphservice from "./morphservice.js";
 import jQuery from 'jquery';
-var $ = jQuery;
 class morphlib {
     constructor(documentobj, shortdeflat, shortdefgre){
         var xx = this;
@@ -38,6 +37,8 @@ class morphlib {
         this.disambugationProvider = "";
         //Copyright information
         this.copyrightInfo = "";
+        //Object to hold the current popup
+        this.popup = false;
         //a list of element @id and @class values regions of the page to be ignored by the library
         this.ignoreElements = false;
         //a list of element @id and @class values the page to which to limit the activity of the library
@@ -51,6 +52,14 @@ class morphlib {
         //short definitions for greek
         jQuery.getJSON("grc-lsj-defs.json", function (data) {
             xx.shortdefgreek = data;
+        })
+        //short definitions for persian
+        jQuery.getJSON("per-stg-defs.json", function (data) {
+            xx.shortdefpersian = data;
+        })
+        //short definitions for arabic
+        jQuery.getJSON("ara-sal-ids.json", function (data) {
+            xx.shortdefarabic = data;
         })
         //short definitions for latin
         this.shortdeflatin = false;
