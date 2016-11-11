@@ -14,6 +14,6 @@ QUnit.test( "add default event listener", function( assert ) {
 
     var lib = new morphlibrary(document);
     lib.activate("gre");
-    var stuff = jQuery("body").data("events")
-    assert.notEqual(null, stuff, "events there");
+    var stuff = jQuery._data("body", "events")
+    assert.notOk(stuff)
 });
