@@ -85,7 +85,7 @@ class morphlib {
                 if(this.prefs.getdebugstatus()){
                     console.log("Adding " + x + "event");
                 }
-                $('body').bind(x, function () {
+                $('body').bind(x, function (event) {
                     eventhandler(event, this, x);
                 });
                 if(this.prefs.getdebugstatus()){
@@ -99,7 +99,7 @@ class morphlib {
                 var bodydebug = $('body');
                 console.log(bodydebug);
             }
-            $('body').on('dblclick', '*', function () {
+            $('body').on('dblclick', '*', function (event) {
                 var tokenobject = eventhandler(event, instance, "click");
                 var morphresponse =morphservice(
                     tokenobject,
@@ -109,7 +109,7 @@ class morphlib {
                     instance.prefs.getmorphserviceversion(instance.currentlang),
                     instance);
             })
-            $('body').on('touch', '*', function () {
+            $('body').on('touch', '*', function (event) {
                 eventhandler(event, instance, "touch");
             })
             if(this.prefs.getdebugstatus()){

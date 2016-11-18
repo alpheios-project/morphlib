@@ -8,19 +8,19 @@ export default function eventhandler(event, instance, trigger) {
         console.log("Event Triggered")
     }
     var elementlang;
-    if(event.srcElement.attributes["xml:lang"]){
-        elementlang = event.srcElement.attributes["xml:lang"].nodeValue;
+    if(event.target.attributes["xml:lang"]){
+        elementlang = event.target.attributes["xml:lang"].nodeValue;
         if(elementlang == 'lat'){
             if(instance.prefs.getdebugstatus()){
                 console.log("Running word as latin, lang taken from element")
             }
-            return processwordlat(event.srcElement, instance);
+            return processwordlat(event.target, instance);
         }
         if(elementlang == 'gre'){
             if(instance.prefs.getdebugstatus()){
                 console.log("Running word as Greek, lang taken from element")
             }
-            return processwordgre(event.srcElement, instance);
+            return processwordgre(event.target, instance);
         }
     } else {
         elementlang = instance.defaultlang;
@@ -28,13 +28,13 @@ export default function eventhandler(event, instance, trigger) {
             if(instance.prefs.getdebugstatus()){
                 console.log("Running word as latin, lang taken from default")
             }
-            return processwordlat(event.srcElement, instance);
+            return processwordlat(event.target, instance);
         }
         if(elementlang == 'gre'){
             if(instance.prefs.getdebugstatus()){
                 console.log("Running word as greek, lang taken from default")
             }
-            return processwordgre(event.srcElement, instance);
+            return processwordgre(event.target, instance);
         }
     }
 }
