@@ -137,6 +137,29 @@ class morphlib {
         return this.currentlang;
     }
 
+    deflangui (){
+        var uilang = window.prompt("Enter the default language for the page");
+        if(uilang.toUpperCase() === "LATIN"){
+            this.defaultlang = "lat";
+        } else {
+            if(uilang.toUpperCase() === "GREEK"){
+                this.defaultlang = "grc";
+            } else {
+                if(uilang.toUpperCase() === "ARABIC"){
+                    this.defaultlang = "ara";
+                } else {
+                    if(uilang.toUpperCase() === "Persian"){
+                        this.defaultlang = "per";
+                    } else {
+                        window.alert("Language not installed please check spelling")
+                    }
+                }
+            }
+        }
+        //var deflangwin = window.open("", "defaultLanguageWindow", "width=200,height=200,top=200,left=500");
+        //deflangwin.document.write('<html><body><form><input type="radio" name="lang" value="lat" checked> Latin<br><input type="radio" name="lang" value="grc"> Greek<br><input type="radio" name="lang" value="ara"> Arabic<br><input type="radio" name="lang" value="per"> Persian<input type="submit" value="Submit"><br></form></body></html>');
+    }
+
     //get the appropiate language tool
     getLanguageTool (elm) {
         var langTool;
