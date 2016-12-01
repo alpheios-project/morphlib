@@ -127,7 +127,6 @@
 .morphlib-tense,.morphlib-voice,.morphlib-pers {
     color: #3E8D9C;
     font-weight: bold;
-    cursor: pointer;
 }
 
 
@@ -164,12 +163,11 @@ div.morphlib-morph {
 .morphlib-case,.morphlib-mood,.morphlib-decl,.morphlib-conj,.morphlib-pofs,.morphlib-pofs-extra {
     color:#3E8D9C;
     font-weight: bold;
-    cursor: pointer;
 }
 
-.morphlib-case:hover,.morphlib-mood:hover,.morphlib-decl:hover,.morphlib-conj:hover,.morphlib-pofs:hover,.morphlib-pofs-extra:hover {
+/*.morphlib-case:hover,.morphlib-mood:hover,.morphlib-decl:hover,.morphlib-conj:hover,.morphlib-pofs:hover,.morphlib-pofs-extra:hover {
     color: #5BC8DC !important;
-}
+}*/
 
 /* attributes inside part-of-speech should not have pointer cursor */
 .morphlib-attr {

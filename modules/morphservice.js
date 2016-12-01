@@ -79,7 +79,15 @@ function wwparser(result, instance, tokenobj) {
                     console.log("part of speech found");
                 }
 
-                var shortdef = analysis[i]["rest"]["entry"]["mean"]
+                var shortdefh = analysis[i]["rest"]["entry"]["mean"];
+                var shortdef = "";
+                if(Object.prototype.toString.call( shortdefh ) === '[object Array]' ){
+                    for (var i = 0; i < shortdefh.length; i++){
+                        shortdef = shortdef + shortdefh[i] + "&#13;&#10;";
+                    }
+                } else {
+                    shortdef = shortdefh
+                }
                 if(instance.prefs.getdebugstatus()){
                     console.log("short definition found");
                 }
@@ -88,7 +96,7 @@ function wwparser(result, instance, tokenobj) {
                 if(instance.prefs.getdebugstatus()){
                     console.log("starting loop to capture inflections");
                 }
-                var inflections = analysis[i]["rest"]["entry"]["infl"]
+                var inflections = analysis[i]["rest"]["entry"]["infl"];
                 if(Object.prototype.toString.call( inflections ) === '[object Array]' ){
                     for(var infl in analysis[i]["rest"]["entry"]["infl"]){
                         infls.push(analysis[i]["rest"]["entry"]["infl"][infl]);
@@ -137,7 +145,15 @@ function wwparser(result, instance, tokenobj) {
                     console.log("part of speech found");
                 }
                 if(analysis["rest"]["entry"]["mean"]){
-                    var shortdef = analysis["rest"]["entry"]["mean"].replace(":,",",")
+                    var shortdefh = analysis["rest"]["entry"]["mean"];
+                    var shortdef = "";
+                    if(Object.prototype.toString.call( shortdefh ) === '[object Array]' ){
+                        for (var i = 0; i < shortdefh.length; i++){
+                            shortdef = shortdef + shortdefh[i] + "&#13;&#10;";
+                        }
+                    } else {
+                        shortdef = shortdefh
+                    }
                 }
                 if(instance.prefs.getdebugstatus()){
                     console.log("short definition found");
@@ -495,7 +511,7 @@ function alpheiosparser (result, instance, tokenobj){
                 if(instance.prefs.getdebugstatus()){
                     console.log("part of speech found");
                 }
-                var shortdef = instance.shortdefarabic[lemma];
+                var shortdef =  analysis[i]["rest"]["entry"]["mean"];
                 if(instance.prefs.getdebugstatus()){
                     console.log("short definition id found");
                 }
@@ -529,7 +545,7 @@ function alpheiosparser (result, instance, tokenobj){
             if(instance.prefs.getdebugstatus()){
                 console.log("part of speech found");
             }
-            var shortdef = instance.shortdefarabic[lemma];
+            var shortdef =  analysis["rest"]["entry"]["mean"];
             if(instance.prefs.getdebugstatus()){
                 console.log("short definition id found");
             }

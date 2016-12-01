@@ -22,6 +22,19 @@ export default function eventhandler(event, instance, trigger) {
             }
             return processwordgrc(event.target, instance);
         }
+        if(elementlang == 'ara'){
+            if(instance.prefs.getdebugstatus()){
+                console.log("Running word as Arabic, lang taken from element")
+            }
+            return processwordara(event.target, instance);
+        }
+        if(elementlang == 'per'){
+            if(instance.prefs.getdebugstatus()){
+                console.log("Running word as Persian, lang taken from element")
+            }
+            return processwordper(event.target, instance);
+        }
+        console.log("Language not installed")
     } else {
         elementlang = instance.defaultlang;
         if(elementlang == 'lat'){
@@ -36,6 +49,19 @@ export default function eventhandler(event, instance, trigger) {
             }
             return processwordgrc(event.target, instance);
         }
+        if(elementlang == 'ara'){
+            if(instance.prefs.getdebugstatus()){
+                console.log("Running word as Arabic, lang taken from element")
+            }
+            return processwordara(event.target, instance);
+        }
+        if(elementlang == 'per'){
+            if(instance.prefs.getdebugstatus()){
+                console.log("Running word as Persian, lang taken from element")
+            }
+            return processwordper(event.target, instance);
+        }
+        console.log("Language not installed")
     }
 }
 // process a word with the default values for latin
@@ -55,6 +81,28 @@ function processwordgrc(srcele, instance) {
     var word = window.getSelection().toString();
     //TODO tokenize context and send to response constructor
     var result = new tokenresponse(word,'','','grc','ltr');
+    if(instance.prefs.getdebugstatus()){
+        console.log(result)
+    }
+    return result;
+}
+// process a word with the default values for arabic
+function processwordara(srcele, instance) {
+    instance.currentlang = "ara";
+    var word = window.getSelection().toString();
+    //TODO tokenize context and send to response constructor
+    var result = new tokenresponse(word,'','','ara','rtl');
+    if(instance.prefs.getdebugstatus()){
+        console.log(result)
+    }
+    return result;
+}
+// process a word with the default values for greek
+function processwordper(srcele, instance) {
+    instance.currentlang = "per";
+    var word = window.getSelection().toString();
+    //TODO tokenize context and send to response constructor
+    var result = new tokenresponse(word,'','','per','rtl');
     if(instance.prefs.getdebugstatus()){
         console.log(result)
     }

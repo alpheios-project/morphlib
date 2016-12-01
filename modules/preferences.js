@@ -41,12 +41,10 @@ class preferences {
         if(lang == "lat"){
             return "remote";
         }
-    }
-    getmorphservicetype(lang){
-        if(lang == "grc"){
+        if(lang == "per"){
             return "remote";
         }
-        if(lang == "lat"){
+        if(lang == "ara"){
             return "remote";
         }
     }
@@ -57,6 +55,12 @@ class preferences {
         if(lang == "lat"){
             return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=lat&engine=whitakerLat&word=";
         }
+        if(lang == "ara"){
+            return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=ara&engine=aramorph&word=";
+        }
+        if(lang == "per"){
+            return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=per&engine=morpheusgrc&word=";
+        }
     }
     getmorphserviceapiformat(lang){
         if(lang == "grc"){
@@ -65,14 +69,26 @@ class preferences {
         if(lang == "lat"){
             return "ww";
         }
+        if(lang == "ara"){
+            return "alpheios";
+        }
+        if(lang == "per"){
+            return "alpheios";
+        }
     }
     getmorphserviceversion(lang){
-    if(lang == "grc"){
+        if(lang == "grc"){
+            return "placeholder";
+        }
+        if(lang == "lat"){
         return "placeholder";
+        }
+        if(lang == "ara"){
+            return "placeholder";
+        }
+        if(lang == "per"){
+            return "placeholder";
+        }
     }
-    if(lang == "lat"){
-        return "placeholder";
-    }
-}
 }
 export default preferences;
