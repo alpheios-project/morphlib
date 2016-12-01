@@ -16,11 +16,11 @@ export default function eventhandler(event, instance, trigger) {
             }
             return processwordlat(event.target, instance);
         }
-        if(elementlang == 'gre'){
+        if(elementlang == 'grc'){
             if(instance.prefs.getdebugstatus()){
                 console.log("Running word as Greek, lang taken from element")
             }
-            return processwordgre(event.target, instance);
+            return processwordgrc(event.target, instance);
         }
     } else {
         elementlang = instance.defaultlang;
@@ -30,11 +30,11 @@ export default function eventhandler(event, instance, trigger) {
             }
             return processwordlat(event.target, instance);
         }
-        if(elementlang == 'gre'){
+        if(elementlang == 'grc'){
             if(instance.prefs.getdebugstatus()){
                 console.log("Running word as greek, lang taken from default")
             }
-            return processwordgre(event.target, instance);
+            return processwordgrc(event.target, instance);
         }
     }
 }
@@ -50,11 +50,11 @@ function processwordlat(srcele, instance) {
     return result;
 }
 // process a word with the default values for greek
-function processwordgre(srcele, instance) {
-    instance.currentlang = "gre";
+function processwordgrc(srcele, instance) {
+    instance.currentlang = "grc";
     var word = window.getSelection().toString();
     //TODO tokenize context and send to response constructor
-    var result = new tokenresponse(word,'','','gre','ltr');
+    var result = new tokenresponse(word,'','','grc','ltr');
     if(instance.prefs.getdebugstatus()){
         console.log(result)
     }

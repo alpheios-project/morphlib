@@ -35,7 +35,7 @@ class preferences {
         //return prefsobj.debug
     }
     getmorphservicetype(lang){
-        if(lang == "gre"){
+        if(lang == "grc"){
             return "remote";
         }
         if(lang == "lat"){
@@ -43,7 +43,7 @@ class preferences {
         }
     }
     getmorphservicetype(lang){
-        if(lang == "gre"){
+        if(lang == "grc"){
             return "remote";
         }
         if(lang == "lat"){
@@ -51,7 +51,7 @@ class preferences {
         }
     }
     getmorphserviceuri(lang){
-        if(lang == "gre"){
+        if(lang == "grc"){
             return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=grc&engine=morpheusgrc&word=";
         }
         if(lang == "lat"){
@@ -59,7 +59,7 @@ class preferences {
         }
     }
     getmorphserviceapiformat(lang){
-        if(lang == "gre"){
+        if(lang == "grc"){
             return "alpheios";
         }
         if(lang == "lat"){
@@ -67,7 +67,7 @@ class preferences {
         }
     }
     getmorphserviceversion(lang){
-    if(lang == "gre"){
+    if(lang == "grc"){
         return "placeholder";
     }
     if(lang == "lat"){

@@ -21,7 +21,7 @@ import eventhandler from "./Eventhandler.js";
 import morphservice from "./morphservice.js";
 import jQuery from 'jquery';
 class morphlib {
-    constructor(documentobj, shortdeflat, shortdefgre){
+    constructor(documentobj, shortdeflat, shortdefgrc){
         var xx = this;
         //Default Language the Alphieos Morphology library will use
         this.defaultlang = "";

@@ -137,7 +137,7 @@ function wwparser(result, instance, tokenobj) {
                     console.log("part of speech found");
                 }
                 if(analysis["rest"]["entry"]["mean"]){
-                    var shortdef = analysis["rest"]["entry"]["mean"]
+                    var shortdef = analysis["rest"]["entry"]["mean"].replace(":,",",")
                 }
                 if(instance.prefs.getdebugstatus()){
                     console.log("short definition found");
@@ -166,12 +166,13 @@ function wwparser(result, instance, tokenobj) {
 
         }
     }
-    var response = new morphresponse(tokenobj, analysisobjects, false, "Short definitions and morphology from Words by William Whitaker, Copyright © 1993-2007.");
+    var response = new morphresponse(tokenobj, analysisobjects, false, "Short definitions and morphology from Words by William Whitaker, Copyright © 1993-2016. Services provided by The Perseids Project at Tufts University and Alpheios.net.");
     launchpopup(response,instance);
     return response;
 }
 
 function alpheiosparser (result, instance, tokenobj){
+    var credits;
     if(instance.currentlang =="lat"){
         if(instance.prefs.getdebugstatus()){
             console.log("Alpeios parser for latin started")
@@ -283,8 +284,9 @@ function alpheiosparser (result, instance, tokenobj){
                 console.log("analysis added");
             }
         }
+        credits = "";
     }
-    if(instance.currentlang == "gre"){
+    if(instance.currentlang == "grc"){
         if(instance.prefs.getdebugstatus()){
             console.log("Alpeios parser for greek started")
         }
@@ -372,7 +374,7 @@ function alpheiosparser (result, instance, tokenobj){
                 console.log("analysis added");
             }
         }
-
+        credits = "Morphology provided by Morpheus from the Perseus Digital Library at Tufts University. Short Definitions from A Greek-English Lexicon (Henry George Liddell, Robert Scott). Services provided by The Perseids Project at Tufts University."
     }
     if(instance.currentlang == "per"){
         if(instance.prefs.getdebugstatus()){
@@ -462,7 +464,7 @@ function alpheiosparser (result, instance, tokenobj){
                 console.log("analysis added");
             }
         }
-
+        credits = "Morphology from the HAZM Analyzer adapted by the Roshan Institute for Persian Studies at UMD and the Perseids Project at Tufts University. Short definitions from A Comprehensive Persian-English Dictionary (Joseph Steingass)."
     }
     if(instance.currentlang == "ara"){
         if(instance.prefs.getdebugstatus()){
@@ -552,9 +554,9 @@ function alpheiosparser (result, instance, tokenobj){
                 console.log("analysis added");
             }
         }
-
+        credits = "Morphology provided by Buckwalter Arabic Morphological Analyzer Version 2.0 from QUAMUS LLC (www.quamus.org). Short definitions from An Advanced Learner's Arabic Dictionary (H. Anthony Salmone). Services provided by The Perseids Project at Tufts University and Alpheios.net."
     }
-    var response = new morphresponse(tokenobj, analysisobjects, false, "Short definitions and morphology from Persieds");
+    var response = new morphresponse(tokenobj, analysisobjects, false, credits);
     launchpopup(response,instance);
     return response;
 }
