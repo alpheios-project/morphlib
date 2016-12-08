@@ -14,9 +14,16 @@ export default function morphservice (tokenobj, typeservice, serviceuri, apiform
             if(morplibinstance.prefs.getdebugstatus()){
                 console.log("performing jQuery ajax request")
             }
-            async(serviceuri + tokenobj.selectedtoken,"GET","json", function (result){
-                return alpheiosparser(result,morplibinstance, tokenobj)
-            })
+            if(Object.prototype.toString.call( serviceuri ) === '[object Array]' ){
+                async(serviceuri[0] + tokenobj.selectedtoken + serviceuri[1],"GET","json", function (result){
+                    return alpheiosparser(result,morplibinstance, tokenobj)
+                })
+            } else {
+                async(serviceuri + tokenobj.selectedtoken,"GET","json", function (result){
+                    return alpheiosparser(result,morplibinstance, tokenobj)
+                })
+            }
+
         }
     } else {
         if (apiformat == "ww") {
@@ -82,8 +89,8 @@ function wwparser(result, instance, tokenobj) {
                 var shortdefh = analysis[i]["rest"]["entry"]["mean"];
                 var shortdef = "";
                 if(Object.prototype.toString.call( shortdefh ) === '[object Array]' ){
-                    for (var i = 0; i < shortdefh.length; i++){
-                        shortdef = shortdef + shortdefh[i] + "&#13;&#10;";
+                    for (var l = 0; l < shortdefh.length; l++){
+                        shortdef = shortdef + shortdefh[l] + "&#13;&#10;";
                     }
                 } else {
                     shortdef = shortdefh
@@ -148,8 +155,8 @@ function wwparser(result, instance, tokenobj) {
                     var shortdefh = analysis["rest"]["entry"]["mean"];
                     var shortdef = "";
                     if(Object.prototype.toString.call( shortdefh ) === '[object Array]' ){
-                        for (var i = 0; i < shortdefh.length; i++){
-                            shortdef = shortdef + shortdefh[i] + "&#13;&#10;";
+                        for (var l = 0; l < shortdefh.length; l++){
+                            shortdef = shortdef + shortdefh[l] + "&#13;&#10;";
                         }
                     } else {
                         shortdef = shortdefh

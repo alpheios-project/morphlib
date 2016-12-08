@@ -99,7 +99,7 @@ class morphlib {
                 var bodydebug = $('body');
                 console.log(bodydebug);
             }
-            $('body').on('dblclick', '*', function (event) {
+            $('body').on('dblclick', function (event) {
                 var tokenobject = eventhandler(event, instance, "click");
                 var morphresponse =morphservice(
                     tokenobject,

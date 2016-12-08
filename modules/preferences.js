@@ -59,7 +59,7 @@ class preferences {
             return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=ara&engine=aramorph&word=";
         }
         if(lang == "per"){
-            return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=per&engine=morpheusgrc&word=";
+            return ["http://services.perseids.org/pysvc/morphologyservice/analysis/word?word=","&lang=per&engine=hazm"];
         }
     }
     getmorphserviceapiformat(lang){
