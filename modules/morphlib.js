@@ -5,15 +5,15 @@
 /**
  * Main controller function for the Alpheios morphology library
  * @type {{
- *      m_defaultLang: string,
- *      m_response: string,
- *      m_morphService: string,
- *      m_shortDefService: string,
- *      m_disambugationProvider: string,
- *      m_copyrightInfo: string,
- *      m_debugging: boolean,
- *      m_ignoreElements: list,
- *      m_focusElements: list
+ *      defaultLang: string,
+ *      response: string,
+ *      morphService: string,
+ *      shortDefService: string,
+ *      disambugationProvider: string,
+ *      copyrightInfo: string,
+ *      debugging: boolean,
+ *      ignoreElements: list,
+ *      focusElements: list
  *    }}
  */
 import preferences from "./preferences.js";
@@ -29,7 +29,7 @@ class morphlib {
         this.currentlang = "";
         //Holds the morphlib.response object
         this.response = "";
-        //holds the location of the morphology provider
+        //holds the name of the current morphology provider
         this.morphService = "";
         //holds the locations of the short definition provider
         this.shortDefService = "";
@@ -109,8 +109,15 @@ class morphlib {
                     instance.prefs.getmorphserviceversion(instance.currentlang),
                     instance);
             })
-            $('body').on('touch', '*', function (event) {
-                eventhandler(event, instance, "touch");
+            $('body').on('touch', function (event) {
+                var tokenobject = eventhandler(event, instance, "touch");
+                this.response =morphservice(
+                    tokenobject,
+                    instance.prefs.getmorphservicetype(instance.currentlang),
+                    instance.prefs.getmorphserviceuri(instance.currentlang),
+                    instance.prefs.getmorphserviceapiformat(instance.currentlang),
+                    instance.prefs.getmorphserviceversion(instance.currentlang),
+                    instance);
             })
             if(this.prefs.getdebugstatus()){
                 console.log("Default events added");

@@ -48,6 +48,7 @@ export default function morphservice (tokenobj, typeservice, serviceuri, apiform
 }
 
 function wwparser(result, instance, tokenobj) {
+    instance.morphService = "whitakerswords";
     if(instance.currentlang =="lat"){
         if(instance.prefs.getdebugstatus()){
             console.log("Whitakers Words parser for latin started")
@@ -195,6 +196,7 @@ function wwparser(result, instance, tokenobj) {
 }
 
 function alpheiosparser (result, instance, tokenobj){
+    instance.morphService = "alpheios";
     var credits;
     if(instance.currentlang =="lat"){
         if(instance.prefs.getdebugstatus()){
