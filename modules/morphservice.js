@@ -581,7 +581,7 @@ function alpheiosparser (result, instance, tokenobj){
         }
         credits = "Morphology provided by Buckwalter Arabic Morphological Analyzer Version 2.0 from QUAMUS LLC (www.quamus.org). Short definitions from An Advanced Learner's Arabic Dictionary (H. Anthony Salmone). Services provided by The Perseids Project at Tufts University and Alpheios.net."
     }
-    var response = new morphresponse(tokenobj, analysisobjects, false, credits);
+    var response = new morphresponse(tokenobj, analysisobjects, false, credits, instance.currentlang);
     launchpopup(response,instance);
     return response;
 }

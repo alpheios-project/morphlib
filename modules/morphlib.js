@@ -21,7 +21,7 @@ import eventhandler from "./Eventhandler.js";
 import morphservice from "./morphservice.js";
 import jQuery from 'jquery';
 class morphlib {
-    constructor(documentobj, shortdeflat, shortdefgrc){
+    constructor(shortdefgrc){
         var xx = this;
         //Default Language the Alphieos Morphology library will use
         this.defaultlang = "";
@@ -45,8 +45,6 @@ class morphlib {
         this.focusElements = false;
         //setup preferences from saved preference file
         this.prefs = new preferences("preferences.json");
-        //document object
-        this.doc = documentobj;
         //previous morphology results
         this.morphresults = [];
         //short definitions for greek
