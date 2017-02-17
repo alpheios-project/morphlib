@@ -27,7 +27,8 @@ export default function launchPopup(morpgresponse, instance){
         console.log("Popup window created successfully")
     }
     var entries = morpgresponse.analysisobjects
-    myWindow.document.write('<div id="morphlibwinmorph" style="visibility: visible" context="'+morpgresponse.originalform+' class="morphlib-word morphlib-word-first">')
+    myWindow.document.write('<div><button id="toggledict" type="button" style="position: fixed; bottom: 0px; right: 0px; z-index: 1;" onclick="togglehidden()">Toggle Full Dictionary</button></div>');
+    myWindow.document.write('<div id="morphlibwinmorph" style="visibility: visible; position: absolute; top: 0px" context="'+morpgresponse.originalform+' class="morphlib-word morphlib-word-first">')
     for (var i = 0; i < entries.length; i++){
         myWindow.document.write('<div class="morphlib-entry">');
         myWindow.document.write('<div class="morplib-dict"><span class="morphlib-hdwd">'+entries[i].lemma+': </span>');
@@ -68,9 +69,8 @@ export default function launchPopup(morpgresponse, instance){
     }
     myWindow.document.write('<div>'+morpgresponse.credits+'</div>');
     myWindow.document.write("</div>");
-    myWindow.document.write('<div><button id="toggledict" type="button" onclick="togglehidden()">Toggle Full Dictionary</button></div>');
     myWindow.focus();
     bigdictlookup(instance, myWindow, morpgresponse.lang, morpgresponse.originalform, entries[0].lemma)
-    //myWindow.document.write("<div id='morphlibwindowdictlookup' style='visibility: hidden'>" + bigdictlookup(instance, morpgresponse.lang, morpgresponse.originalform, entries[0].lemma) + "</div>")
+    //myWindow.document.write("<div id='morphlibwindowdictlookup' style='visibility: hidden; position: relative'>" + bigdictlookup(instance, morpgresponse.lang, morpgresponse.originalform, entries[0].lemma) + "</div>")
     instance.popup = myWindow;
 }

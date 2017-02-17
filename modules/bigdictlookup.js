@@ -11,19 +11,24 @@ export default function bigdictlookup(instance, popup, lang, originalform, lemma
     var uri;
     if (lang == "grc") {
         uri = "http://repos1.alpheios.net/exist/rest/db/xq/lexi-get.xq?lx=lsj&lg=grc&out=HTML&l=" + lemma;
-    } else if (lang = "lat") {
-        if (Object.prototype.toString.call(lemma) === '[object Array]') {
-            uri = "http://repos1.alpheios.net/exist/rest/db/xq/lexi-get.xq?lx=ls&lg=lat&out=HTML&l=" + lemma[0];
+    } else if (lang == "lat") {
+        var splitlemma = lemma.split(",")
+        if (Object.prototype.toString.call(splitlemma) === '[object Array]') {
+            var lemmas = "";
+            for (var i = 0; i < splitlemma.length; i++){
+                lemmas = lemmas + "&l=" + splitlemma[i];
+            }
+            uri = "http://repos1.alpheios.net/exist/rest/db/xq/lexi-get.xq?lx=ls&lg=lat&out=HTML" + lemmas;
         } else {
             uri = "http://repos1.alpheios.net/exist/rest/db/xq/lexi-get.xq?lx=ls&lg=lat&out=HTML&l=" + lemma
         }
 
-    } else if (lang = "ara") {
+    } else if (lang == "ara") {
         uri = "http://repos1.alpheios.net/exist/rest/db/xq/lexi-get.xq?lx=sal&lg=ara&out=HTML&l=" + lemma;
-    } else if (lang = "per") {
+    } else if (lang == "per") {
         uri = "http://repos1.alpheios.net/exist/rest/db/xq/lexi-get.xq?lx=stg&lg=per&out=HTML&l=" + lemma;
     }
     async(uri, "GET", "html", function (result) {
-        popup.document.write("<div id='morphlibwindowdictlookup' style='visibility: hidden'>" + result + "</div>")
+        popup.document.write("<div id='morphlibwindowdictlookup' style='visibility: hidden; position: absolute; top: 0px'>" + result + "</div>")
     })
 }

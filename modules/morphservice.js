@@ -190,7 +190,7 @@ function wwparser(result, instance, tokenobj) {
 
         }
     }
-    var response = new morphresponse(tokenobj, analysisobjects, false, "Short definitions and morphology from Words by William Whitaker, Copyright © 1993-2016. Services provided by The Perseids Project at Tufts University and Alpheios.net.");
+    var response = new morphresponse(tokenobj, analysisobjects, false, "Short definitions and morphology from Words by William Whitaker, Copyright © 1993-2016. Services provided by The Perseids Project at Tufts University and Alpheios.net.", instance.currentlang);
     launchpopup(response,instance);
     return response;
 }

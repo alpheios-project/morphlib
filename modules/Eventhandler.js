@@ -43,7 +43,7 @@ export default function eventhandler(event, instance, trigger) {
         }
         console.log("Language not installed")
     } else if (jqid){
-        if($(jqid).parents("[xml\\:lang]")){
+        if($(jqid).parents("[xml\\:lang]").length>0){
             elementlang = $(jqid).parents("[xml\\:lang]")[0].attributes["xml:lang"].nodeValue;
             if(elementlang == 'lat'){
                 if(instance.prefs.getdebugstatus()){
@@ -66,6 +66,33 @@ export default function eventhandler(event, instance, trigger) {
             if(elementlang == 'per'){
                 if(instance.prefs.getdebugstatus()){
                     console.log("Running word as Persian, lang taken from ancestor element")
+                }
+                return processwordper(event.target, instance);
+            }
+            console.log("Language not installed")
+        } else {
+            elementlang = instance.defaultlang;
+            if(elementlang == 'lat'){
+                if(instance.prefs.getdebugstatus()){
+                    console.log("Running word as latin, lang taken from default")
+                }
+                return processwordlat(event.target, instance);
+            }
+            if(elementlang == 'grc'){
+                if(instance.prefs.getdebugstatus()){
+                    console.log("Running word as greek, lang taken from default")
+                }
+                return processwordgrc(event.target, instance);
+            }
+            if(elementlang == 'ara'){
+                if(instance.prefs.getdebugstatus()){
+                    console.log("Running word as Arabic, lang taken from element")
+                }
+                return processwordara(event.target, instance);
+            }
+            if(elementlang == 'per'){
+                if(instance.prefs.getdebugstatus()){
+                    console.log("Running word as Persian, lang taken from element")
                 }
                 return processwordper(event.target, instance);
             }
