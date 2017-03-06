@@ -446,3 +446,13 @@ div.morphlib-morph {
 .morphlib-source-title {
     text-decoration: underline;
 }
+
+#morphlibwindowdictlookup {
+    position: absolute;
+    top: 35px;
+}
+
+#morphlibwinmorph {
+    position: absolute;
+    top: 35px;
+}

@@ -15,7 +15,8 @@ export default function launchPopup(morpgresponse, instance){
         myWindow = window.open("", "morplibWindow", "width=600,height=400");
     }
     myWindow.document.write('<head><link rel="stylesheet" href="morphwindow.css" type="text/css" /><title>Morphology Library Window</title> </head>');
-    myWindow.document.write('<script> function togglehidden() { if(document.getElementById("morphlibwinmorph").style.visibility=="hidden"){ document.getElementById("morphlibwinmorph").style.visibility = "visible"; } else { document.getElementById("morphlibwinmorph").style.visibility = "hidden"; } if(document.getElementById("morphlibwindowdictlookup").style.visibility== "hidden"){ document.getElementById("morphlibwindowdictlookup").style.visibility = "visible"; } else { document.getElementById("morphlibwindowdictlookup").style.visibility = "hidden"; } } </script>');
+    myWindow.document.write('<script> function togglehidden() { if(document.getElementById("morphlibwinmorph").style.visibility=="hidden"){ document.getElementById("morphlibwinmorph").style.visibility = "visible"; document.getElementById("morphlibwindowdictlookup").style.visibility = "hidden"; document.getElementById("dictentry1").style.visibility = "hidden"; document.getElementById("dictentry2").style.visibility = "hidden"; } else { document.getElementById("morphlibwinmorph").style.visibility = "hidden"; document.getElementById("morphlibwindowdictlookup").style.visibility = "visible";  document.getElementById("dictentry1").style.visibility = "visible";} }</script>');
+    myWindow.document.write('<script> function togglehiddengreek() { if(document.getElementById("dictentry1").style.visibility=="hidden"){ document.getElementById("dictentry1").style.visibility = "visible"; } else { document.getElementById("dictentry1").style.visibility = "hidden"; } if(document.getElementById("dictentry2").style.visibility== "hidden"){ document.getElementById("dictentry2").style.visibility = "visible"; } else { document.getElementById("dictentry2").style.visibility = "hidden"; } } </script>');
     if(!myWindow){
         if(debug){
             console.log("Warning popup window failed to create popup window")
@@ -27,8 +28,8 @@ export default function launchPopup(morpgresponse, instance){
         console.log("Popup window created successfully")
     }
     var entries = morpgresponse.analysisobjects
-    myWindow.document.write('<div><button id="toggledict" type="button" style="position: fixed; bottom: 0px; right: 0px; z-index: 1;" onclick="togglehidden()">Toggle Full Dictionary</button></div>');
-    myWindow.document.write('<div id="morphlibwinmorph" style="visibility: visible; position: absolute; top: 0px" context="'+morpgresponse.originalform+' class="morphlib-word morphlib-word-first">')
+    myWindow.document.write('<div><button id="toggledict" type="button" style="z-index: 1" onclick="togglehidden()">Toggle Full Dictionary</button></div>');
+    myWindow.document.write('<div id="morphlibwinmorph" style="visibility: visible" context="'+morpgresponse.originalform+' class="morphlib-word morphlib-word-first">')
     for (var i = 0; i < entries.length; i++){
         myWindow.document.write('<div class="morphlib-entry">');
         myWindow.document.write('<div class="morplib-dict"><span class="morphlib-hdwd">'+entries[i].lemma+': </span>');
@@ -70,6 +71,7 @@ export default function launchPopup(morpgresponse, instance){
     myWindow.document.write('<div>'+morpgresponse.credits+'</div>');
     myWindow.document.write("</div>");
     myWindow.focus();
+    myWindow.document.write('<div id="morphlibwindowdictlookup" style="visibility: hidden"><img src="http://www.cuisson.co.uk/templates/cuisson/supersize/slideshow/img/progress.BAK-FOURTH.gif"></div>')
     bigdictlookup(instance, myWindow, morpgresponse.lang, morpgresponse.originalform, entries[0].lemma)
     //myWindow.document.write("<div id='morphlibwindowdictlookup' style='visibility: hidden; position: relative'>" + bigdictlookup(instance, morpgresponse.lang, morpgresponse.originalform, entries[0].lemma) + "</div>")
     instance.popup = myWindow;
