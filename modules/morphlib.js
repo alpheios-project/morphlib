@@ -64,14 +64,16 @@ class morphlib {
     }
     /*
      activate the library to run on a browser window
+     * @param {String} deflang - the default language
+     * @param {String} css selector for the element to attach event listeners to
+     * @param {String[]} events = list of events to listen to
      */
-    activate (deflang, events) {
+    activate (deflang, selector, events) {
         var instance = this;
         if(this.prefs.getdebugstatus()){
             console.log("activate morphology library started");
         }
-        this.defaultlang = deflang;
-        this.currentlang = deflang;
+        this.selector = selector || 'body';
         if(this.prefs.getdebugstatus()){
             console.log("Adding default listener");
         }
@@ -97,7 +99,7 @@ class morphlib {
                 var bodydebug = $('body');
                 console.log(bodydebug);
             }
-            $('body').on('dblclick', function (event) {
+            $(this.selector).on('dblclick', function (event) {
                 var tokenobject = eventhandler(event, instance, "click");
                 var morphresponse =morphservice(
                     tokenobject,
@@ -107,7 +109,7 @@ class morphlib {
                     instance.prefs.getmorphserviceversion(instance.currentlang),
                     instance);
             })
-            $('body').on('touch', function (event) {
+            $(this.selector).on('touch', function (event) {
                 var tokenobject = eventhandler(event, instance, "touch");
                 this.response =morphservice(
                     tokenobject,
@@ -131,7 +133,7 @@ class morphlib {
         if(this.prefs.getdebugstatus()){
             console.log("Deactivating Morphology library")
         }
-        $('body').unbind;
+        $(this.selector).unbind();
         alert("Morphology Library Deactivated")
         if(this.prefs.getdebugstatus()){
             console.log("Morphology library deactivated")
