@@ -65,7 +65,7 @@ class morphlib {
     /*
      activate the library to run on a browser window
      * @param {String} deflang - the default language
-     * @param {String} css selector for the element to attach event listeners to
+     * @param {Obj} selector - array of elements to attach event listeners to
      * @param {String[]} events = list of events to listen to
      */
     activate (deflang, selector, events) {
@@ -73,7 +73,7 @@ class morphlib {
         if(this.prefs.getdebugstatus()){
             console.log("activate morphology library started");
         }
-        this.selector = selector || 'body';
+        this.selector = selector || $('body');
         if(this.prefs.getdebugstatus()){
             console.log("Adding default listener");
         }
@@ -85,7 +85,7 @@ class morphlib {
                 if(this.prefs.getdebugstatus()){
                     console.log("Adding " + x + "event");
                 }
-                $('body').bind(x, function (event) {
+                $(this.selector).bind(x, function (event) {
                     eventhandler(event, this, x);
                 });
                 if(this.prefs.getdebugstatus()){
