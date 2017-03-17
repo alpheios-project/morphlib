@@ -67,28 +67,31 @@ function wwparser(result, instance, tokenobj) {
         }
         if(Object.prototype.toString.call( analysis ) === '[object Array]' ){
             for (var i = 0; i < analysis.length; i++){
+                var lemma = "";
+                var pofs = "";
+                var shortdef = "";
+                var infls = [];
                 if(instance.prefs.getdebugstatus()){
                     console.log("Looping through different analyses from morph service")
                 }
                 if(analysis[i]["rest"]["entry"]["dict"]){
                     if(analysis[i]["rest"]["entry"]["dict"]["hdwd"]){
-                        var lemma = analysis[i]["rest"]["entry"]["dict"]["hdwd"]["$"];
+                        lemma = analysis[i]["rest"]["entry"]["dict"]["hdwd"]["$"];
+                        if(instance.prefs.getdebugstatus()){
+                            console.log("Lemma found");
+                        }
                     }
-                }
-                if(instance.prefs.getdebugstatus()){
-                    console.log("Lemma found");
                 }
                 if(analysis[i]["rest"]["entry"]["dict"]){
                     if(analysis[i]["rest"]["entry"]["dict"]["pofs"]){
-                        var pofs = analysis[i]["rest"]["entry"]["dict"]["pofs"]["$"];
+                      pofs = analysis[i]["rest"]["entry"]["dict"]["pofs"]["$"];
+                      if(instance.prefs.getdebugstatus()){
+                        console.log("part of speech found");
+                      }
                     }
-                }
-                if(instance.prefs.getdebugstatus()){
-                    console.log("part of speech found");
                 }
 
                 var shortdefh = analysis[i]["rest"]["entry"]["mean"];
-                var shortdef = "";
                 if(Object.prototype.toString.call( shortdefh ) === '[object Array]' ){
                     for (var l = 0; l < shortdefh.length; l++){
                         shortdef = shortdef + shortdefh[l] + "&#13;&#10;";
@@ -100,7 +103,6 @@ function wwparser(result, instance, tokenobj) {
                     console.log("short definition found");
                 }
 
-                var infls = [];
                 if(instance.prefs.getdebugstatus()){
                     console.log("starting loop to capture inflections");
                 }
@@ -129,16 +131,20 @@ function wwparser(result, instance, tokenobj) {
                 shortdef = analysis["rest"]["entry"]["mean"];
                 var infls = [];
                 infls.push(analysis["rest"]["entry"]["infl"]);
-                lemma = "";
-                pofs = "";
+                var lemma = "";
+                var pofs = "";
                 analysisobjects.push(new analysisresponse(lemma, pofs, shortdef, infls, true));
                 if(instance.prefs.getdebugstatus()){
                     console.log("analysis added");
                 }
             } else {
+              var lemma = "";
+              var pofs = "";
+              var shortdef = "";
+              var infls = [];
                 if(analysis["rest"]["entry"]["dict"]){
                     if(analysis["rest"]["entry"]["dict"]["hdwd"]){
-                        var lemma = analysis["rest"]["entry"]["dict"]["hdwd"]["$"];
+                        lemma = analysis["rest"]["entry"]["dict"]["hdwd"]["$"];
                     }
                 }
                 if(instance.prefs.getdebugstatus()){
@@ -146,7 +152,7 @@ function wwparser(result, instance, tokenobj) {
                 }
                 if (analysis["rest"]["entry"]["dict"]){
                     if(analysis["rest"]["entry"]["dict"]["pofs"]){
-                        var pofs = analysis["rest"]["entry"]["dict"]["pofs"]["$"];
+                        pofs = analysis["rest"]["entry"]["dict"]["pofs"]["$"];
                     }
                 }
                 if(instance.prefs.getdebugstatus()){
@@ -154,7 +160,6 @@ function wwparser(result, instance, tokenobj) {
                 }
                 if(analysis["rest"]["entry"]["mean"]){
                     var shortdefh = analysis["rest"]["entry"]["mean"];
-                    var shortdef = "";
                     if(Object.prototype.toString.call( shortdefh ) === '[object Array]' ){
                         for (var l = 0; l < shortdefh.length; l++){
                             shortdef = shortdef + shortdefh[l] + "&#13;&#10;";
@@ -166,7 +171,6 @@ function wwparser(result, instance, tokenobj) {
                 if(instance.prefs.getdebugstatus()){
                     console.log("short definition found");
                 }
-                var infls = [];
                 if(instance.prefs.getdebugstatus()){
                     console.log("starting loop to capture inflections");
                 }
@@ -197,391 +201,120 @@ function wwparser(result, instance, tokenobj) {
 
 function alpheiosparser (result, instance, tokenobj){
     instance.morphService = "alpheios";
-    var credits;
-    if(instance.currentlang =="lat"){
+    if(instance.prefs.getdebugstatus()){
+        console.log("Alpeios parser for " + instance.currentlang + " started");
+    }
+    let analysisobjects = [];
+    let body = result["RDF"]["Annotation"]["Body"];
+    let credits;
+    if(analysis) {
         if(instance.prefs.getdebugstatus()){
-            console.log("Alpeios parser for latin started")
+        console.log("body element found in Json morphology json response");
         }
-        var analysisobjects = [];
-        var analysis = result["RDF"]["Annotation"]["Body"];
-        if(analysis) {
-            if(instance.prefs.getdebugstatus()){
-                console.log("body element found in Json morphology json response");
-            }
-        } else {
-            analysis = result["RDF"]["Annotation"];
-            if(instance.prefs.getdebugstatus()){
-                console.log("No body element found");
-            }
+    } else {
+        analysis = result["RDF"]["Annotation"];
+        if(instance.prefs.getdebugstatus()){
+            console.log("No body element found");
         }
-        if(Object.prototype.toString.call( analysis ) === '[object Array]' ){
-            for (var i = 0; i < analysis.length; i++){
-                if(instance.prefs.getdebugstatus()){
-                    console.log("Looping through different analyses from morph service")
-                }
-                var lemma = analysis[i]["rest"]["entry"]["dict"]["hdwd"]["$"];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("Lemma found");
-                }
-                var pofs = analysis[i]["rest"]["entry"]["dict"]["pofs"]["$"];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("part of speech found");
-                }
-                if(instance.shortdeflatin){
-                    var shortdef = instance.shortdeflatin[lemma];
-                    if(instance.prefs.getdebugstatus()){
-                        console.log("short definition found in file");
-                    }
-                } else {
-                    var shortdef = "Short Definition file Missing"
-                    if(instance.prefs.getdebugstatus()){
-                        console.log("attempting to find shortdef through WW service");
-                    }
-                    async("http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=lat&engine=whitakerLat&word=" + lemma,"GET","json",function (result){
-                        shortdef = result["RDF"]["Annotation"]["Body"]["rest"]["entry"]["mean"]
-                    })
-                    console.log("short definition uri found");
-                }
+    }
+    let analysis;
+    if(Object.prototype.toString.call( body ) !== '[object Array]' ) {
+      analysis = [ body ];
+    } else {
+      analysis = body;
+    }
+    for (let i = 0; i < analysis.length; i++){
+        let lemma = "";
+        let pofs = "";
+        let shortdef = "";
+        let infls = [];
+        if(instance.prefs.getdebugstatus()){
+            console.log("Looping through different analyses from morph service")
+        }
 
-                var infls = [];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("starting loop to capture inflections");
-                }
-                var inflections = analysis[i]["rest"]["entry"]["infl"]
-                if(Object.prototype.toString.call( inflections ) === '[object Array]' ){
-                    for(var infl in analysis[i]["rest"]["entry"]["infl"]){
-                        infls.push(analysis[i]["rest"]["entry"]["infl"][infl]);
-                    }
-                } else {
-                    infls.push(analysis[i]["rest"]["entry"]["infl"]);
-                }
-
-                if(instance.prefs.getdebugstatus()){
-                    console.log("inflections captured")
-                };
-                analysisobjects.push(new analysisresponse(lemma, pofs, shortdef, infls, true));
-                if(instance.prefs.getdebugstatus()){
-                    console.log("analysis added");
-                }
+        if (analysis[i]["rest"]["entry"]["dict"]) {
+          if (analysis[i]["rest"]["entry"]["dict"]["hdwd"]) {
+            lemma = analysis[i]["rest"]["entry"]["dict"]["hdwd"]["$"];
+            if (instance.prefs.getdebugstatus()) {
+              console.log("Lemma found");
             }
-        } else {
-            var lemma = analysis["rest"]["entry"]["dict"]["hdwd"]["$"];
-            if(instance.prefs.getdebugstatus()){
-                console.log("Lemma found");
+          }
+          if (analysis[i]["rest"]["entry"]["dict"]["pofs"]) {
+            pofs = analysis[i]["rest"]["entry"]["dict"]["pofs"]["$"];
+            if (instance.prefs.getdebugstatus()) {
+              console.log("part of speech found");
             }
-            var pofs = analysis["rest"]["entry"]["dict"]["pofs"]["$"];
-            if(instance.prefs.getdebugstatus()){
-                console.log("part of speech found");
-            }
-            if(instance.shortdeflatin){
-                var shortdef = instance.shortdeflatin[lemma];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("short definition uri found");
-                }
+          }
+        }
+        switch(instance.currentlang) {
+          case 'lat':
+            if (instance.shortdeflatin) {
+              shortdef = instance.shortdeflatin[lemma];
+              if (instance.prefs.getdebugstatus()) {
+                console.log("short definition found in file");
+              }
             } else {
-                var shortdef = "Short Definition file Missing"
-                if(instance.prefs.getdebugstatus()){
-                    console.log("attempting to find shortdef through WW service");
-                }
-                async("http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=lat&engine=whitakerLat&word=" + lemma,"GET","json",function (result){
-                    shortdef = result["RDF"]["Annotation"]["Body"]["rest"]["entry"]["mean"]
-                })
+              shortdef = "Short Definition file Missing";
+              if (instance.prefs.getdebugstatus()) {
+                console.log("attempting to find shortdef through WW service");
+              }
+              async("http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=lat&engine=whitakerLat&word=" + lemma, "GET", "json", function (result) {
+                shortdef = result["RDF"]["Annotation"]["Body"]["rest"]["entry"]["mean"]
+              })
+              console.log("short definition uri found");
+            }
+            credits = "";
+            break;
+          case 'grc':
+            if (instance.shortdefgreek) {
+              shortdef = instance.shortdefgreek[lemma];
+              if(instance.prefs.getdebugstatus()) {
                 console.log("short definition uri found");
+              }
             }
-            var infls = [];
+            credits = "Morphology provided by Morpheus from the Perseus Digital Library at Tufts University. Short Definitions from A Greek-English Lexicon (Henry George Liddell, Robert Scott). Services provided by The Perseids Project at Tufts University."
+            break;
+          case 'per':
+            if (instance.shortdefpersian) {
+              shortdef = instance.shortdefpersian[lemma];
+            }
             if(instance.prefs.getdebugstatus()){
-                console.log("starting loop to capture inflections");
+              console.log("short definition found");
             }
-            var inflections = analysis["rest"]["entry"]["infl"]
-            if(Object.prototype.toString.call( inflections ) === '[object Array]'){
-                for(var infl in analysis["rest"]["entry"]["infl"]){
-                    infls.push(analysis["rest"]["entry"]["infl"][infl]);
-                }
-            } else {
-                infls.push(analysis["rest"]["entry"]["infl"]);
-            }
-
+            credits = "Morphology from the HAZM Analyzer adapted by the Roshan Institute for Persian Studies at UMD and the Perseids Project at Tufts University. Short definitions from A Comprehensive Persian-English Dictionary (Joseph Steingass)."
+            break;
+          case 'ara':
+            shortdef =  analysis[i]["rest"]["entry"]["mean"];
             if(instance.prefs.getdebugstatus()){
-                console.log("inflections captured")
-            };
-            analysisobjects.push(new analysisresponse(lemma, pofs, shortdef, infls, true));
-            if(instance.prefs.getdebugstatus()){
-                console.log("analysis added");
+              console.log("short definition id found");
             }
+            credits = "Morphology provided by Buckwalter Arabic Morphological Analyzer Version 2.0 from QUAMUS LLC (www.quamus.org). Short definitions from An Advanced Learner's Arabic Dictionary (H. Anthony Salmone). Services provided by The Perseids Project at Tufts University and Alpheios.net."
+            break;
+          default:
+              break;
         }
-        credits = "";
-    }
-    if(instance.currentlang == "grc"){
+
         if(instance.prefs.getdebugstatus()){
-            console.log("Alpeios parser for greek started")
+            console.log("starting loop to capture inflections");
         }
-        var analysisobjects = [];
-        var analysis = result["RDF"]["Annotation"]["Body"];
-        if(analysis) {
-            if(instance.prefs.getdebugstatus()){
-                console.log("body element found in Json morphology json response");
+        let inflections = analysis[i]["rest"]["entry"]["infl"]
+        if(Object.prototype.toString.call( inflections ) === '[object Array]' ){
+            for(let infl in analysis[i]["rest"]["entry"]["infl"]){
+                infls.push(analysis[i]["rest"]["entry"]["infl"][infl]);
             }
         } else {
-            analysis = result["RDF"]["Annotation"];
-            if(instance.prefs.getdebugstatus()){
-                console.log("No body element found");
-            }
+            infls.push(analysis[i]["rest"]["entry"]["infl"]);
         }
-        if(Object.prototype.toString.call( analysis ) === '[object Array]' ){
-            for (var i = 0; i < analysis.length; i++){
-                if(instance.prefs.getdebugstatus()){
-                    console.log("Looping through different analyses from morph service")
-                }
-                var lemma = analysis[i]["rest"]["entry"]["dict"]["hdwd"]["$"];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("Lemma found");
-                }
-                var pofs = analysis[i]["rest"]["entry"]["dict"]["pofs"]["$"];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("part of speech found");
-                }
-                var shortdef = instance.shortdefgreek[lemma];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("short definition uri found");
-                }
-                var infls = [];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("starting loop to capture inflections");
-                }
-                var inflections = analysis[i]["rest"]["entry"]["infl"]
-                if(Object.prototype.toString.call( inflections ) === '[object Array]' ){
-                    for(var infl in analysis[i]["rest"]["entry"]["infl"]){
-                        infls.push(analysis[i]["rest"]["entry"]["infl"][infl]);
-                    }
-                } else {
-                    infls.push(analysis[i]["rest"]["entry"]["infl"]);
-                }
 
-                if(instance.prefs.getdebugstatus()){
-                    console.log("inflections captured")
-                };
-                analysisobjects.push(new analysisresponse(lemma, pofs, shortdef, infls, true));
-                if(instance.prefs.getdebugstatus()){
-                    console.log("analysis added");
-                }
-            }
-        } else {
-            var lemma = analysis["rest"]["entry"]["dict"]["hdwd"]["$"];
-            if(instance.prefs.getdebugstatus()){
-                console.log("Lemma found");
-            }
-            var pofs = analysis["rest"]["entry"]["dict"]["pofs"]["$"];
-            if(instance.prefs.getdebugstatus()){
-                console.log("part of speech found");
-            }
-            var shortdef = instance.shortdefgreek[lemma];
-            if(instance.prefs.getdebugstatus()){
-                console.log("short definition uri found");
-            }
-            var infls = [];
-            if(instance.prefs.getdebugstatus()){
-                console.log("starting loop to capture inflections");
-            }
-            var inflections = analysis["rest"]["entry"]["infl"]
-            if(Object.prototype.toString.call( inflections ) === '[object Array]'){
-                for(var infl in analysis["rest"]["entry"]["infl"]){
-                    infls.push(analysis["rest"]["entry"]["infl"][infl]);
-                }
-            } else {
-                infls.push(analysis["rest"]["entry"]["infl"]);
-            }
-
-            if(instance.prefs.getdebugstatus()){
-                console.log("inflections captured")
-            };
-            analysisobjects.push(new analysisresponse(lemma, pofs, shortdef, infls, true));
-            if(instance.prefs.getdebugstatus()){
-                console.log("analysis added");
-            }
-        }
-        credits = "Morphology provided by Morpheus from the Perseus Digital Library at Tufts University. Short Definitions from A Greek-English Lexicon (Henry George Liddell, Robert Scott). Services provided by The Perseids Project at Tufts University."
-    }
-    if(instance.currentlang == "per"){
         if(instance.prefs.getdebugstatus()){
-            console.log("Alpeios parser for persian started")
+          console.log("inflections captured")
         }
-        var analysisobjects = [];
-        var analysis = result["RDF"]["Annotation"]["Body"];
-        if(analysis) {
-            if(instance.prefs.getdebugstatus()){
-                console.log("body element found in Json morphology json response");
-            }
-        } else {
-            analysis = result["RDF"]["Annotation"];
-            if(instance.prefs.getdebugstatus()){
-                console.log("No body element found");
-            }
-        }
-        if(Object.prototype.toString.call( analysis ) === '[object Array]' ){
-            for (var i = 0; i < analysis.length; i++){
-                if(instance.prefs.getdebugstatus()){
-                    console.log("Looping through different analyses from morph service")
-                }
-                var lemma = analysis[i]["rest"]["entry"]["dict"]["hdwd"]["$"];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("Lemma found");
-                }
-                var pofs = analysis[i]["rest"]["entry"]["dict"]["pofs"]["$"];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("part of speech found");
-                }
-                var shortdef = instance.shortdefpersian[lemma];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("short definition found");
-                }
-                var infls = [];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("starting loop to capture inflections");
-                }
-                var inflections = analysis[i]["rest"]["entry"]["infl"]
-                if(Object.prototype.toString.call( inflections ) === '[object Array]' ){
-                    for(var infl in analysis[i]["rest"]["entry"]["infl"]){
-                        infls.push(analysis[i]["rest"]["entry"]["infl"][infl]);
-                    }
-                } else {
-                    infls.push(analysis[i]["rest"]["entry"]["infl"]);
-                }
-
-                if(instance.prefs.getdebugstatus()){
-                    console.log("inflections captured")
-                };
-                analysisobjects.push(new analysisresponse(lemma, pofs, shortdef, infls, true));
-                if(instance.prefs.getdebugstatus()){
-                    console.log("analysis added");
-                }
-            }
-        } else {
-            var lemma = analysis["rest"]["entry"]["dict"]["hdwd"]["$"];
-            if(instance.prefs.getdebugstatus()){
-                console.log("Lemma found");
-            }
-            var pofs = analysis["rest"]["entry"]["dict"]["pofs"]["$"];
-            if(instance.prefs.getdebugstatus()){
-                console.log("part of speech found");
-            }
-            var shortdef = instance.shortdefpersian[lemma];
-            if(instance.prefs.getdebugstatus()){
-                console.log("short definition found");
-            }
-            var infls = [];
-            if(instance.prefs.getdebugstatus()){
-                console.log("starting loop to capture inflections");
-            }
-            var inflections = analysis["rest"]["entry"]["infl"]
-            if(Object.prototype.toString.call( inflections ) === '[object Array]'){
-                for(var infl in analysis["rest"]["entry"]["infl"]){
-                    infls.push(analysis["rest"]["entry"]["infl"][infl]);
-                }
-            } else {
-                infls.push(analysis["rest"]["entry"]["infl"]);
-            }
-
-            if(instance.prefs.getdebugstatus()){
-                console.log("inflections captured")
-            };
-            analysisobjects.push(new analysisresponse(lemma, pofs, shortdef, infls, true));
-            if(instance.prefs.getdebugstatus()){
-                console.log("analysis added");
-            }
-        }
-        credits = "Morphology from the HAZM Analyzer adapted by the Roshan Institute for Persian Studies at UMD and the Perseids Project at Tufts University. Short definitions from A Comprehensive Persian-English Dictionary (Joseph Steingass)."
-    }
-    if(instance.currentlang == "ara"){
+        analysisobjects.push(new analysisresponse(lemma, pofs, shortdef, infls, true));
         if(instance.prefs.getdebugstatus()){
-            console.log("Alpeios parser for arabic started")
+            console.log("analysis added");
         }
-        var analysisobjects = [];
-        var analysis = result["RDF"]["Annotation"]["Body"];
-        if(analysis) {
-            if(instance.prefs.getdebugstatus()){
-                console.log("body element found in Json morphology json response");
-            }
-        } else {
-            analysis = result["RDF"]["Annotation"];
-            if(instance.prefs.getdebugstatus()){
-                console.log("No body element found");
-            }
-        }
-        if(Object.prototype.toString.call( analysis ) === '[object Array]' ){
-            for (var i = 0; i < analysis.length; i++){
-                if(instance.prefs.getdebugstatus()){
-                    console.log("Looping through different analyses from morph service")
-                }
-                var lemma = analysis[i]["rest"]["entry"]["dict"]["hdwd"]["$"];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("Lemma found");
-                }
-                var pofs = analysis[i]["rest"]["entry"]["dict"]["pofs"]["$"];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("part of speech found");
-                }
-                var shortdef =  analysis[i]["rest"]["entry"]["mean"];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("short definition id found");
-                }
-                var infls = [];
-                if(instance.prefs.getdebugstatus()){
-                    console.log("starting loop to capture inflections");
-                }
-                var inflections = analysis[i]["rest"]["entry"]["infl"]
-                if(Object.prototype.toString.call( inflections ) === '[object Array]' ){
-                    for(var infl in analysis[i]["rest"]["entry"]["infl"]){
-                        infls.push(analysis[i]["rest"]["entry"]["infl"][infl]);
-                    }
-                } else {
-                    infls.push(analysis[i]["rest"]["entry"]["infl"]);
-                }
-
-                if(instance.prefs.getdebugstatus()){
-                    console.log("inflections captured")
-                };
-                analysisobjects.push(new analysisresponse(lemma, pofs, shortdef, infls, true));
-                if(instance.prefs.getdebugstatus()){
-                    console.log("analysis added");
-                }
-            }
-        } else {
-            var lemma = analysis["rest"]["entry"]["dict"]["hdwd"]["$"];
-            if(instance.prefs.getdebugstatus()){
-                console.log("Lemma found");
-            }
-            var pofs = analysis["rest"]["entry"]["dict"]["pofs"]["$"];
-            if(instance.prefs.getdebugstatus()){
-                console.log("part of speech found");
-            }
-            var shortdef =  analysis["rest"]["entry"]["mean"];
-            if(instance.prefs.getdebugstatus()){
-                console.log("short definition id found");
-            }
-            var infls = [];
-            if(instance.prefs.getdebugstatus()){
-                console.log("starting loop to capture inflections");
-            }
-            var inflections = analysis["rest"]["entry"]["infl"]
-            if(Object.prototype.toString.call( inflections ) === '[object Array]'){
-                for(var infl in analysis["rest"]["entry"]["infl"]){
-                    infls.push(analysis["rest"]["entry"]["infl"][infl]);
-                }
-            } else {
-                infls.push(analysis["rest"]["entry"]["infl"]);
-            }
-
-            if(instance.prefs.getdebugstatus()){
-                console.log("inflections captured")
-            };
-            analysisobjects.push(new analysisresponse(lemma, pofs, shortdef, infls, true));
-            if(instance.prefs.getdebugstatus()){
-                console.log("analysis added");
-            }
-        }
-        credits = "Morphology provided by Buckwalter Arabic Morphological Analyzer Version 2.0 from QUAMUS LLC (www.quamus.org). Short definitions from An Advanced Learner's Arabic Dictionary (H. Anthony Salmone). Services provided by The Perseids Project at Tufts University and Alpheios.net."
     }
-    var response = new morphresponse(tokenobj, analysisobjects, false, credits, instance.currentlang);
+    let response = new morphresponse(tokenobj, analysisobjects, false, credits, instance.currentlang);
     launchpopup(response,instance);
     return response;
 }
