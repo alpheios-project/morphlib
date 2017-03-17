@@ -1,5 +1,6 @@
 <html>
   <head>Test Morphlib</head>
+  <meta charset="utf-8">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script type="text/javascript" src="../build/js/alpheios-morphlib.js"></script>
   </head>
@@ -40,8 +41,7 @@
     </p>
     <script>
         var lib = new morphlibrary("grc-lsj-defs.json");
-        lib.activate("grc");
-        lib.deflangui();
+        lib.activate("grc","body");
     </script>
   </body>
 </html>
