@@ -155,7 +155,7 @@ class morphlib {
                 if(uilang.toUpperCase() === "ARABIC"){
                     this.defaultlang = "ara";
                 } else {
-                    if(uilang.toUpperCase() === "Persian"){
+                    if(uilang.toUpperCase() === "PERSIAN"){
                         this.defaultlang = "per";
                     } else {
                         window.alert("Language not installed please check spelling")
