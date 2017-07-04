@@ -56,25 +56,25 @@ class morphlib {
         //previous morphology results
         this.morphresults = [];
         //short definitions for greek
-        if (true){
-            jQuery.getJSON("https://rawgit.com/alpheios-project/morphlib/master/sample/grc-lsj-defs.json", function (data) {
+        if (this.prefs.getshortdeffile("grc")){
+            jQuery.getJSON(this.prefs.getshortdeffile("grc"), function (data) {
                 xx.shortdefgreek = data;
             })
         }
         //short definitions for persian
-        if (true){
-            jQuery.getJSON("https://rawgit.com/alpheios-project/morphlib/master/sample/per-stg-defs.json", function (data) {
+        if (this.prefs.getshortdeffile("per")){
+            jQuery.getJSON(this.prefs.getshortdeffile("per"), function (data) {
                 xx.shortdefpersian = data;
             })
         }
         //short definitions for arabic
-        if (true){
-            jQuery.getJSON("https://rawgit.com/alpheios-project/morphlib/master/sample/ara-sal-ids.json", function (data) {
+        if (this.prefs.getshortdeffile("ara")){
+            jQuery.getJSON(this.prefs.getshortdeffile("ara"), function (data) {
                 xx.shortdefarabic = data;
             })
         }
         //short definitions for latin
-        if (false){
+        if (this.prefs.getshortdeffile("lat")){
             jQuery.getJSON(this.prefs.getshortdeffile("lat"), function (data) {
                 xx.shortdeflatin = data;
             })
