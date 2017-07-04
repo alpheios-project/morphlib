@@ -26,15 +26,15 @@ class morphlib {
         //setup preferences
         if (prefsfile == "default") {
             //loads default preference values
-            this.prefs == new preferences("default")
+            this.prefs = new preferences("default")
         } else {
             //loads user provided preferences file
             this.prefs = new preferences(prefsfile);
         }
         //Default Language the Alphieos Morphology library will use
-        this.defaultlang = this.prefs.getdefaultlang();
+        this.defaultlang = '';
         //Current Language the morphology library is using
-        this.currentlang = this.prefs.getdefaultlang();
+        this.currentlang = '';
         //Holds the morphlib.response object
         this.response = "";
         //holds the name of the current morphology provider
@@ -56,25 +56,25 @@ class morphlib {
         //previous morphology results
         this.morphresults = [];
         //short definitions for greek
-        if (this.prefs.getshortdeffile("grc")){
-            jQuery.getJSON(this.prefs.getshortdeffile("grc"), function (data) {
+        if (true){
+            jQuery.getJSON("https://rawgit.com/alpheios-project/morphlib/master/sample/grc-lsj-defs.json", function (data) {
                 xx.shortdefgreek = data;
             })
         }
         //short definitions for persian
-        if (this.prefs.getshortdeffile("per")){
-            jQuery.getJSON(this.prefs.getshortdeffile("per"), function (data) {
+        if (true){
+            jQuery.getJSON("https://rawgit.com/alpheios-project/morphlib/master/sample/per-stg-defs.json", function (data) {
                 xx.shortdefpersian = data;
             })
         }
         //short definitions for arabic
-        if (this.prefs.getshortdeffile("ara")){
-            jQuery.getJSON(this.prefs.getshortdeffile("ara"), function (data) {
+        if (true){
+            jQuery.getJSON("https://rawgit.com/alpheios-project/morphlib/master/sample/ara-sal-ids.json", function (data) {
                 xx.shortdefarabic = data;
             })
         }
         //short definitions for latin
-        if (this.prefs.getshortdeffile("lat")){
+        if (false){
             jQuery.getJSON(this.prefs.getshortdeffile("lat"), function (data) {
                 xx.shortdeflatin = data;
             })

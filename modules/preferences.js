@@ -2,10 +2,11 @@
  * Created by Elijah Cooke on 7/12/2016.
  * test
  */
-    
+import jQuery from 'jquery';
+
 class preferences {
     constructor(prefFile) {
-        var xx = this
+        var xdg = this
         //intializes preference object with default values
         if (prefFile == "default"){
             this.currentprefs = {
@@ -50,7 +51,7 @@ class preferences {
             }
         } else {
             jQuery.getJSON(prefFile, function (data) {
-                xx.currentprefs = data;
+                xdg.currentprefs = data;
             })
         }
     }
@@ -88,3 +89,4 @@ class preferences {
     }
 }
 export default preferences;
+
