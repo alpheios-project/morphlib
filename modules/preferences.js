@@ -5,90 +5,86 @@
     
 class preferences {
     constructor(prefFile) {
+        var xx = this
+        //intializes preference object with default values
+        if (prefFile == "default"){
+            this.currentprefs = {
+                "installedlangs" : {
+                    "grc": {
+                        "servicetype":"remote",
+                        "uri":"http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=grc&engine=morpheusgrc&word=",
+                        "format":"alpheios",
+                        "mouseaction":"dblclick",
+                        "shortdeffile":"https://rawgit.com/alpheios-project/morphlib/master/sample/grc-lsj-defs.json",
+                        "version":"placeholder"//future feature
 
+                    },
+                    "lat":{
+                        "servicetype":"remote",
+                        "uri":"http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=lat&engine=whitakerLat&word=",
+                        "format":"ww",
+                        "mouseaction":"dblclick",
+                        "shortdeffile":false,
+                        "version":"placeholder"//future feature
+                    },
+                    "per":{
+                        "servicetype":"remote",
+                        "uri":["http://services.perseids.org/pysvc/morphologyservice/analysis/word?word=","&lang=per&engine=hazm"],
+                        "format":"alpheios",
+                        "mouseaction":"dblclick",
+                        "shortdeffile":"https://rawgit.com/alpheios-project/morphlib/master/sample/per-stg-defs.json",
+                        "version":"placeholder"//future feature
+                    },
+                    "ara":{
+                        "servicetype":"remote",
+                        "uri":"http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=ara&engine=aramorph&word=",
+                        "format":"alpheios",
+                        "mouseaction":"dblclick",
+                        "shortdeffile":"https://rawgit.com/alpheios-project/morphlib/master/sample/ara-sal-ids.json",
+                        "version":"placeholder"//future feature
+                    }
+                },
+                "debugstatus":true,
+                "mouseaction":"onclick",
+                "defaultlang":false
+            }
+        } else {
+            jQuery.getJSON(prefFile, function (data) {
+                xx.currentprefs = data;
+            })
+        }
     }
 
-    getcurretlang(){
-        
+    getdefaultlang(){
+        return this.currentprefs["defaultlang"];
+    }
+
+    getshortdeffile(lang){
+        return this.currentprefs["installedlangs"][lang]["shortdeffile"]
     }
 
     setMouseAction (lang, newAction){
-        var installedlangs = prefsobj.languages[2];
-        for(var intlang in installedlangs["installedlangs"]){
-            if(installedlangs["installedlangs"][intlang]["code"]==lang){
-                installedlangs["installedlangs"][intlang]["mouseaction"] == newAction;
-            }
-        }
+        this.currentprefs["installedlangs"][lang]["mouseaction"] = newAction;
+        return
     }
 
     getMouseAction (lang){
-        var installedlangs = prefsobj.languages[2];
-        for(var intlang in installedlangs["installedlangs"]){
-            if(installedlangs["installedlangs"][intlang]["code"]==lang){
-                return installedlangs["installedlangs"][intlang]["mouseaction"];
-            }
-        }
+        return this.currentprefs["installedlangs"][lang]["mouseaction"]
     }
     getdebugstatus(){
-        //placeholder till preference class is fixed
-        return true;
-        //return prefsobj.debug
+        return this.currentprefs["debugstatus"];
     }
     getmorphservicetype(lang){
-        if(lang == "grc"){
-            return "remote";
-        }
-        if(lang == "lat"){
-            return "remote";
-        }
-        if(lang == "per"){
-            return "remote";
-        }
-        if(lang == "ara"){
-            return "remote";
-        }
+        return this.currentprefs["installedlangs"][lang]["servicetype"]
     }
     getmorphserviceuri(lang){
-        if(lang == "grc"){
-            return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=grc&engine=morpheusgrc&word=";
-        }
-        if(lang == "lat"){
-            return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=lat&engine=whitakerLat&word=";
-        }
-        if(lang == "ara"){
-            return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=ara&engine=aramorph&word=";
-        }
-        if(lang == "per"){
-            return ["http://services.perseids.org/pysvc/morphologyservice/analysis/word?word=","&lang=per&engine=hazm"];
-        }
+        return this.currentprefs["installedlangs"][lang]["uri"]
     }
     getmorphserviceapiformat(lang){
-        if(lang == "grc"){
-            return "alpheios";
-        }
-        if(lang == "lat"){
-            return "ww";
-        }
-        if(lang == "ara"){
-            return "alpheios";
-        }
-        if(lang == "per"){
-            return "alpheios";
-        }
+        return this.currentprefs["installedlangs"][lang]["format"]
     }
     getmorphserviceversion(lang){
-        if(lang == "grc"){
-            return "placeholder";
-        }
-        if(lang == "lat"){
-        return "placeholder";
-        }
-        if(lang == "ara"){
-            return "placeholder";
-        }
-        if(lang == "per"){
-            return "placeholder";
-        }
+        return this.currentprefs["installedlangs"][lang]["version"]
     }
 }
 export default preferences;

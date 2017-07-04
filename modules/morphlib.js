@@ -21,12 +21,20 @@ import eventhandler from "./Eventhandler.js";
 import morphservice from "./morphservice.js";
 import jQuery from 'jquery';
 class morphlib {
-    constructor(shortdefgrc){
+    constructor(prefsfile){
         var xx = this;
+        //setup preferences
+        if (prefsfile == "default") {
+            //loads default preference values
+            this.prefs == new preferences("default")
+        } else {
+            //loads user provided preferences file
+            this.prefs = new preferences(prefsfile);
+        }
         //Default Language the Alphieos Morphology library will use
-        this.defaultlang = "";
+        this.defaultlang = this.prefs.getdefaultlang();
         //Current Language the morphology library is using
-        this.currentlang = "";
+        this.currentlang = this.prefs.getdefaultlang();
         //Holds the morphlib.response object
         this.response = "";
         //holds the name of the current morphology provider
@@ -43,24 +51,35 @@ class morphlib {
         this.ignoreElements = false;
         //a list of element @id and @class values the page to which to limit the activity of the library
         this.focusElements = false;
-        //setup preferences from saved preference file
-        this.prefs = new preferences("preferences.json");
+
+
         //previous morphology results
         this.morphresults = [];
         //short definitions for greek
-        jQuery.getJSON("grc-lsj-defs.json", function (data) {
-            xx.shortdefgreek = data;
-        })
+        if (this.prefs.getshortdeffile("grc")){
+            jQuery.getJSON(this.prefs.getshortdeffile("grc"), function (data) {
+                xx.shortdefgreek = data;
+            })
+        }
         //short definitions for persian
-        jQuery.getJSON("per-stg-defs.json", function (data) {
-            xx.shortdefpersian = data;
-        })
+        if (this.prefs.getshortdeffile("per")){
+            jQuery.getJSON(this.prefs.getshortdeffile("per"), function (data) {
+                xx.shortdefpersian = data;
+            })
+        }
         //short definitions for arabic
-        jQuery.getJSON("ara-sal-ids.json", function (data) {
-            xx.shortdefarabic = data;
-        })
+        if (this.prefs.getshortdeffile("ara")){
+            jQuery.getJSON(this.prefs.getshortdeffile("ara"), function (data) {
+                xx.shortdefarabic = data;
+            })
+        }
         //short definitions for latin
-        this.shortdeflatin = false;
+        if (this.prefs.getshortdeffile("lat")){
+            jQuery.getJSON(this.prefs.getshortdeffile("lat"), function (data) {
+                xx.shortdeflatin = data;
+            })
+        }
+
     }
     /*
      activate the library to run on a browser window
@@ -163,8 +182,6 @@ class morphlib {
                 }
             }
         }
-        //var deflangwin = window.open("", "defaultLanguageWindow", "width=200,height=200,top=200,left=500");
-        //deflangwin.document.write('<html><body><form><input type="radio" name="lang" value="lat" checked> Latin<br><input type="radio" name="lang" value="grc"> Greek<br><input type="radio" name="lang" value="ara"> Arabic<br><input type="radio" name="lang" value="per"> Persian<input type="submit" value="Submit"><br></form></body></html>');
     }
 
     //get the appropiate language tool

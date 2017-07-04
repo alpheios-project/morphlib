@@ -14,7 +14,7 @@ export default function launchPopup(morpgresponse, instance){
     } else {
         myWindow = window.open("", "morplibWindow", "width=600,height=400");
     }
-    myWindow.document.write('<head><link rel="stylesheet" href="morphwindow.css" type="text/css" /><title>Morphology Library Window</title> </head>');
+    myWindow.document.write('<head><link rel="stylesheet" href="https://rawgit.com/alpheios-project/morphlib/master/sample/morphwindow.css.css" type="text/css" /><title>Morphology Library Window</title> </head>');
     myWindow.document.write('<script> function togglehidden() { if(document.getElementById("morphlibwinmorph").style.visibility=="hidden"){ document.getElementById("morphlibwinmorph").style.visibility = "visible"; document.getElementById("morphlibwindowdictlookup").style.visibility = "hidden"; document.getElementById("dictentry1").style.visibility = "hidden"; document.getElementById("dictentry2").style.visibility = "hidden"; } else { document.getElementById("morphlibwinmorph").style.visibility = "hidden"; document.getElementById("morphlibwindowdictlookup").style.visibility = "visible";  document.getElementById("dictentry1").style.visibility = "visible";} }</script>');
     myWindow.document.write('<script> function togglehiddengreek() { if(document.getElementById("dictentry1").style.visibility=="hidden"){ document.getElementById("dictentry1").style.visibility = "visible"; } else { document.getElementById("dictentry1").style.visibility = "hidden"; } if(document.getElementById("dictentry2").style.visibility== "hidden"){ document.getElementById("dictentry2").style.visibility = "visible"; } else { document.getElementById("dictentry2").style.visibility = "hidden"; } } </script>');
     if(!myWindow){
