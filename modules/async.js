@@ -1,4 +1,3 @@
-import jQuery from 'jquery';
 /**
  * Just an XmlHttpRequest helper
  *

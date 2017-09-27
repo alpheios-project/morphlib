@@ -2,7 +2,6 @@
  */
 import * as main from "./morphlib"
 import {tokenresponse} from "./response.js";
-import jQuery from 'jquery';
 export default function eventhandler(event, instance, trigger) {
   if(instance.prefs.getdebugstatus()){
     console.log("Event Triggered")

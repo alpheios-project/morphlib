@@ -2,7 +2,6 @@
  * Created by Elijah Cooke on 1/20/2017.
  */
 import async from "./async";
-import jQuery from 'jquery';
 
 export default function bigdictlookup(instance, popup, lang, originalform, lemma) {
     if (instance.prefs.getdebugstatus()) {

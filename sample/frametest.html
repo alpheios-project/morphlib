@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="../build/js/alpheios-morphlib.js"></script>
+</head>
+<body>
+
+
+<iframe src="indexinframe.html" width="400" height="300">
+  <p>Your browser does not support iframes.</p>
+</iframe>
+
+ <script>
+   var lib = new morphlibrary("grc-lsj-defs.json");
+   let target = $("body",$("iframe").contents());
+   lib.activate("grc",target);
+ </script>
+</body>
+</html>

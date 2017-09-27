@@ -19,7 +19,9 @@
 import preferences from "./preferences.js";
 import eventhandler from "./Eventhandler.js";
 import morphservice from "./morphservice.js";
-import jQuery from 'jquery';
+import jquery from 'jquery';
+window.jQuery = jquery;
+window.$ = jquery
 class morphlib {
     constructor(shortdefgrc){
         var xx = this;
