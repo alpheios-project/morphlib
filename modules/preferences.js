@@ -2,14 +2,14 @@
  * Created by Elijah Cooke on 7/12/2016.
  * test
  */
-    
+
 class preferences {
     constructor(prefFile) {
 
     }
 
     getcurretlang(){
-        
+
     }
 
     setMouseAction (lang, newAction){
@@ -50,16 +50,16 @@ class preferences {
     }
     getmorphserviceuri(lang){
         if(lang == "grc"){
-            return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=grc&engine=morpheusgrc&word=";
+            return "http://morph.perseids.org/analysis/word?lang=grc&engine=morpheusgrc&word=";
         }
         if(lang == "lat"){
-            return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=lat&engine=whitakerLat&word=";
+            return "http://morph.perseids.org/analysis/word?lang=lat&engine=whitakerLat&word=";
         }
         if(lang == "ara"){
-            return "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=ara&engine=aramorph&word=";
+            return "http://morph.alpheios.net/api/v1/analysis/word?lang=ara&engine=aramorph&word=";
         }
         if(lang == "per"){
-            return ["http://services.perseids.org/pysvc/morphologyservice/analysis/word?word=","&lang=per&engine=hazm"];
+            return ["http://morph.perseids.org/analysis/word?word=","&lang=per&engine=hazm"];
         }
     }
     getmorphserviceapiformat(lang){

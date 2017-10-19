@@ -40,29 +40,32 @@ export default function launchPopup(morpgresponse, instance){
         myWindow.document.write('</div>');
         myWindow.document.write('<div class="morphlib-label morphlib-form-label">Form(s):</div>');
         for (var x = 0; x < entries[i].inflections.length; x++){
-            var form = entries[i].inflections[x]["term"]["stem"];
+            var form = entries[i].inflections[x]["term"]["stem"]["$"];
             if(entries[i].inflections[x]["term"]["suff"]){
-                form = form + "-" + entries[i].inflections[x]["term"]["suff"];
+                form = form + "-" + entries[i].inflections[x]["term"]["suff"]["$"];
             }
             myWindow.document.write('<div class="morphlib-infl-set" context="'+form+'" class="morphlib-infl-set"><span class="morphlib-term">'+form+'</span>');
             myWindow.document.write('<div class="morphlib-infl">')
             if(entries[i].inflections[x]["pers"]){
-                myWindow.document.write('<span class="morphlib-pers">'+entries[i].inflections[x]["pers"]+' person</span>')
+                myWindow.document.write('<span class="morphlib-pers">'+entries[i].inflections[x]["pers"]["$"]+' person</span>')
             }
             if(entries[i].inflections[x]["num"]){
-                myWindow.document.write('<span class="morphlib-num">'+entries[i].inflections[x]["num"]+'; </span>')
+                myWindow.document.write('<span class="morphlib-num">'+entries[i].inflections[x]["num"]["$"]+'; </span>')
             }
             if(entries[i].inflections[x]["tense"]){
-                myWindow.document.write('<span class="morphlib-tense">'+entries[i].inflections[x]["tense"]+' </span>')
+                myWindow.document.write('<span class="morphlib-tense">'+entries[i].inflections[x]["tense"]["$"]+' </span>')
             }
             if(entries[i].inflections[x]["mood"]){
-                myWindow.document.write('<span class="morphlib-mood">'+entries[i].inflections[x]["mood"]+'; </span>')
+                myWindow.document.write('<span class="morphlib-mood">'+entries[i].inflections[x]["mood"]["$"]+'; </span>')
             }
             if(entries[i].inflections[x]["voice"]){
-                myWindow.document.write('<span class="morphlib-voice">'+entries[i].inflections[x]["voice"]+'</span>')
+                myWindow.document.write('<span class="morphlib-voice">'+entries[i].inflections[x]["voice"]["$"]+'</span>')
             }
             if(entries[i].inflections[x]["case"]){
-                myWindow.document.write('<span class="morphlib-voice">'+entries[i].inflections[x]["case"]["$"]+'</span>')
+                myWindow.document.write('<span class="morphlib-case">'+entries[i].inflections[x]["case"]["$"]+'</span>')
+            }
+            if(entries[i].inflections[x]["gend"]){
+                myWindow.document.write('<span class="morphlib-gend">'+entries[i].inflections[x]["gend"]["$"]+'</span>')
             }
             myWindow.document.write('</div></div>')
         }

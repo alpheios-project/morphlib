@@ -17,8 +17,8 @@
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
     "karma-jasmine-jquery": "0.1.1",
-    "karma-qunit":"1.2.1",
-    "karma-jquery":"0.1.0",
+    "karma-qunit": "1.2.1",
+    "karma-jquery": "0.1.0",
     "onchange": "^2.4.0",
     "qunitjs": "2.0.1",
     "rollup": "^0.35.11",
@@ -29,5 +29,8 @@
     "test": "start karma.conf.js",
     "build": "rollup -c rollup.config.js",
     "dev": "npm run build && http-server -p 8888 & onchange modules -- npm run build"
+  },
+  "dependencies": {
+    "timers-ext": "^0.1.2"
   }
 }

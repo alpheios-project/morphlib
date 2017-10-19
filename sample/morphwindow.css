@@ -124,7 +124,7 @@
     padding-top: 0px;
 }
 
-.morphlib-tense,.morphlib-voice,.morphlib-pers {
+.morphlib-tense,.morphlib-voice,.morphlib-pers,.morphlib-gend,.morphlib-case,.morphlib-num {
     color: #3E8D9C;
     font-weight: bold;
 }

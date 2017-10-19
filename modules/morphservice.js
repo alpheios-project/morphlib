@@ -94,10 +94,10 @@ function wwparser(result, instance, tokenobj) {
                 var shortdefh = analysis[i]["rest"]["entry"]["mean"];
                 if(Object.prototype.toString.call( shortdefh ) === '[object Array]' ){
                     for (var l = 0; l < shortdefh.length; l++){
-                        shortdef = shortdef + shortdefh[l] + "&#13;&#10;";
+                        shortdef = shortdef + shortdefh[l]["$"] + "&#13;&#10;";
                     }
                 } else {
-                    shortdef = shortdefh
+                    shortdef = shortdefh["$"]
                 }
                 if(instance.prefs.getdebugstatus()){
                     console.log("short definition found");
@@ -124,11 +124,11 @@ function wwparser(result, instance, tokenobj) {
                 }
             }
         } else {
-            if (analysis["rest"]["entry"]["mean"] == "Assume\nthis\nis\ncapitalized\nproper\nname/abbr"){
+            if (analysis["rest"]["entry"]["mean"]["$"] == "Assume\nthis\nis\ncapitalized\nproper\nname/abbr"){
                 if(instance.prefs.getdebugstatus()){
                     console.log("Proper noun");
                 }
-                shortdef = analysis["rest"]["entry"]["mean"];
+                shortdef = analysis["rest"]["entry"]["mean"]["$"];
                 var infls = [];
                 infls.push(analysis["rest"]["entry"]["infl"]);
                 var lemma = "";
@@ -162,10 +162,10 @@ function wwparser(result, instance, tokenobj) {
                     var shortdefh = analysis["rest"]["entry"]["mean"];
                     if(Object.prototype.toString.call( shortdefh ) === '[object Array]' ){
                         for (var l = 0; l < shortdefh.length; l++){
-                            shortdef = shortdef + shortdefh[l] + "&#13;&#10;";
+                            shortdef = shortdef + shortdefh[l]["$"] + "&#13;&#10;";
                         }
                     } else {
-                        shortdef = shortdefh
+                        shortdef = shortdefh["$"]
                     }
                 }
                 if(instance.prefs.getdebugstatus()){
@@ -259,7 +259,7 @@ function alpheiosparser (result, instance, tokenobj){
                 console.log("attempting to find shortdef through WW service");
               }
               async("http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=lat&engine=whitakerLat&word=" + lemma, "GET", "json", function (result) {
-                shortdef = result["RDF"]["Annotation"]["Body"]["rest"]["entry"]["mean"]
+                shortdef = result["RDF"]["Annotation"]["Body"]["rest"]["entry"]["mean"]["$"]
               })
               console.log("short definition uri found");
             }
@@ -284,7 +284,7 @@ function alpheiosparser (result, instance, tokenobj){
             credits = "Morphology from the HAZM Analyzer adapted by the Roshan Institute for Persian Studies at UMD and the Perseids Project at Tufts University. Short definitions from A Comprehensive Persian-English Dictionary (Joseph Steingass)."
             break;
           case 'ara':
-            shortdef =  analysis[i]["rest"]["entry"]["mean"];
+            shortdef =  analysis[i]["rest"]["entry"]["mean"]["$"];
             if(instance.prefs.getdebugstatus()){
               console.log("short definition id found");
             }

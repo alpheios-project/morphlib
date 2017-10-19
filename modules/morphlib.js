@@ -70,6 +70,7 @@ class morphlib {
      */
     activate (deflang, selector, events) {
         var instance = this;
+        this.defaultlang = deflang;
         if(this.prefs.getdebugstatus()){
             console.log("activate morphology library started");
         }
