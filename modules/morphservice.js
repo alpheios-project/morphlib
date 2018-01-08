@@ -258,7 +258,7 @@ function alpheiosparser (result, instance, tokenobj){
               if (instance.prefs.getdebugstatus()) {
                 console.log("attempting to find shortdef through WW service");
               }
-              async("http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=lat&engine=whitakerLat&word=" + lemma, "GET", "json", function (result) {
+              async("https://morph.perseids.org/analysis/word?lang=lat&engine=whitakerLat&word=" + lemma, "GET", "json", function (result) {
                 shortdef = result["RDF"]["Annotation"]["Body"]["rest"]["entry"]["mean"]["$"]
               })
               console.log("short definition uri found");
